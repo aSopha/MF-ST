@@ -19,7 +19,7 @@ let player = new Player();
 let weapon = new Weapon();
 let baddies = new Baddies();
 
-let fx;
+let pickUpSound;
 
 function preload() {
 

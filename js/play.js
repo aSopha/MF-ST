@@ -23,10 +23,19 @@ var playState = {
     	coins.enableBody = true;
     	coins.createMultiple(300, 'drop');
 
+        coins.forEach(function(coin) {
+            console.log('resized coin');
+            coin.body.height = 35;
+            coin.body.width = 35;
+            coin.body.offset.setTo(-7,-7);
+        });
+
 
 
         //Enabling Player
         player.setup();
+
+
         //Enabling Weapon
         weapon.setup();
         //Enabling Miias
@@ -42,11 +51,10 @@ var playState = {
       	     right: game.input.keyboard.addKey(Phaser.Keyboard.D),
     	}
 
-        fx = game.add.audio('meow');
+        pickUpSound = game.add.audio('meow');
     },
 
     update: function() {
-
 
         if(level.killCount == level.enemiesThisLevel) {
             this.shop();
@@ -54,9 +62,8 @@ var playState = {
             updateLevelText();
 
         }
-
         game.physics.arcade.collide(baddies.miias);
-        game.physics.arcade.overlap(player.player, baddies.miias, killPlayer, null, this);
+        //game.physics.arcade.overlap(player.player, baddies.miias, killPlayer, null, this);
         game.physics.arcade.overlap(weapon.shots, baddies.miias, hitBaddie, null, this);
         game.physics.arcade.overlap(player.player, coins, pickUp, null, this);
 
@@ -64,7 +71,6 @@ var playState = {
             game.physics.arcade.moveToObject(baddie, player.player, 125)
         });
 
-        player.stop();
         player.stop();
 
         baddies.spawnBaddie();
@@ -120,7 +126,7 @@ function pickUp(guy, coin) {
 	coin.kill();
 	player.currency += 1;
 	currencyText.text = ': ' + player.currency;
-    fx.play();
+    pickUpSound.play();
 }
 
 

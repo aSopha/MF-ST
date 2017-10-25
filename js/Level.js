@@ -33,5 +33,15 @@ class Level {
         return this.enemyCount[this.currentLevel];
     }
 
+    reset() {
+        
+        this.killCount = 0;
+        this.enemyCount = [10,15,20,25,30];
+        this.levelCount = 5;
+        this.enemiesRemaining = this.enemyCount[this.currentLevel];
+        this.over = false;
+
+    }
+
 
 }
