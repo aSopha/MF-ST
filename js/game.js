@@ -15,6 +15,7 @@ let level = 0;
 let levelText;
 
 let killCount = 0;
+let levelCount = 25;
 
 let levelSpawnCount = 25;
 
@@ -67,7 +68,7 @@ function create() {
 
 	coins = game.add.group();
 	coins.enableBody = true;
-	coins.createMultiple(100, 'drop');
+	coins.createMultiple(300, 'drop');
 
 
 
@@ -101,6 +102,7 @@ function create() {
 
 function update() {
 
+
     game.physics.arcade.overlap(shots, baddies, hitBaddie, null, this);
 	game.physics.arcade.overlap(player, coins, pickUp, null, this);
     //game.physics.arcade.overlap(player, baddies, killPlayer, null, this);
@@ -118,7 +120,11 @@ function update() {
 
 
 	spawnBaddie();
-
+	if(killCount === levelCount) {
+		nextLevel();
+		levelCount += 25;
+		levelSpawnCount +=25
+	}
 
 
     if (wasd.left.isDown)
@@ -256,6 +262,10 @@ function spawnBaddie() {
 	console.log(levelSpawnCount);
     return baddie;
 };
+
+function nextLevel() {
+	levelText.text = 'Level: ' + ++level;
+}
 
 function restart() {
     player.revive()
