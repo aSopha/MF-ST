@@ -8,6 +8,8 @@ var loadState = {
     	game.load.image('coin', 'assets/mistycoin.png');
     	game.load.image('drop', 'assets/mistycoinDrop.png');
     	game.load.image('button', 'assets/button.png');
+
+        game.load.audio('meow', 'assets/audio/meowing.wav');
     },
 
     create: function() {

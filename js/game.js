@@ -19,6 +19,8 @@ let player = new Player();
 let weapon = new Weapon();
 let baddies = new Baddies();
 
+let fx;
+
 function preload() {
 
 }

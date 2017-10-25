@@ -41,6 +41,8 @@ var playState = {
       	     left: game.input.keyboard.addKey(Phaser.Keyboard.A),
       	     right: game.input.keyboard.addKey(Phaser.Keyboard.D),
     	}
+
+        fx = game.add.audio('meow');
     },
 
     update: function() {
@@ -118,6 +120,7 @@ function pickUp(guy, coin) {
 	coin.kill();
 	player.currency += 1;
 	currencyText.text = ': ' + player.currency;
+    fx.play();
 }
 
 
