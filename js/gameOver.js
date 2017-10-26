@@ -19,5 +19,7 @@ var overState = {
         game.state.start('menu');
         music.stop();
         level.reset();
+        weapon.reset();
+        player.reset();
     }
 }

@@ -5,8 +5,15 @@ class Weapon {
         this.fireSpeed = 300;
         this.nextFire = 0;
         this.weaponType = 0;
+        this.weaponTypeMax = 2;
     }
 
+    reset() {
+        this.fireRate = 300;
+        this.fireSpeed = 300;
+        this.nextFire = 0;
+        this.weaponType = 0;
+    }
 
     setup() {
         this.shots = game.add.group();
@@ -17,18 +24,64 @@ class Weapon {
     	this.shots.tracking = false;
     }
 
-    fire(player) {
+    //If the weapon is upgraded to the highest level
+    //Return true
+    isMax() {
+        if(this.weaponType == this.weaponTypeMax) {
+            return true;
+        }
+    }
+
+    upgradeWeapon() {
+        if(this.isMax()) {
+            console.log('weapon is already maxed out');
+            return false;
+        }
+        this.weaponType++;
+    }
+
+    fire(player, offset) {
+        if(offset == null) {
+            offset = 0;
+        }
         if (game.time.now > this.nextFire)
         {
-            let angle = game.physics.arcade.angleToPointer(player.player)
-            angle *= 57.295;
             this.nextFire = game.time.now + this.fireRate;
-            let ball = this.shots.getFirstDead();
-            ball.reset(player.xPos, player.yPos);
-    		ball.anchor.setTo(0.5, 0.5);
-            ball.game.physics.arcade.velocityFromAngle(angle, this.fireSpeed, ball.body.velocity);
-    		ball.rotation = game.physics.arcade.angleToPointer(ball) + 1.6;
+            if(this.weaponType == 0) {
+                this.fireSingleShot(player, offset);
+            } else if(this.weaponType == 1) {
+                this.fireDoubleShot(player, offset);
+            } else if(this.weaponType == 2) {
+                this.fireTripleShot(player, offset);
+            }
         }
+    }
+
+    fireSingleShot(player, offset) {
+        let ball = this.shots.getFirstDead();
+        let angle = game.physics.arcade.angleToPointer(player.player)
+        angle *= 57.295;
+        console.log(offset);
+        console.log(angle);
+        angle += offset;
+        console.log(angle);
+
+
+        ball.reset(player.xPos, player.yPos);
+        ball.anchor.setTo(0.5, 0.5);
+        ball.game.physics.arcade.velocityFromAngle(angle, this.fireSpeed, ball.body.velocity);
+        ball.rotation = game.physics.arcade.angleToPointer(ball) + 1.57 + offset/57;
+    }
+
+    fireDoubleShot(player, offset) {
+        this.fireSingleShot(player, offset);
+        this.fireSingleShot(player, 180);
+    }
+
+    fireTripleShot(player, offset) {
+        this.fireSingleShot(player, offset);
+        this.fireSingleShot(player, 120);
+        this.fireSingleShot(player, 240);
     }
 
     setFireRate(newRate) {

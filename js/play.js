@@ -21,7 +21,7 @@ var playState = {
         //Enabling Coins
         coins = game.add.group();
     	coins.enableBody = true;
-    	coins.createMultiple(300, 'drop');
+    	coins.createMultiple(150, 'drop');
 
         coins.forEach(function(coin) {
             console.log('resized coin');
@@ -39,7 +39,11 @@ var playState = {
         //Enabling Weapon
         weapon.setup();
         //Enabling Miias
-        baddies.setupMiias();
+        baddies.setupAll();
+
+        baddies.papis.setAll('body.bounce.x', 1);
+        baddies.papis.setAll('body.bounce.y', 1);
+        baddies.papis.setAll('body.collideWorldBounds', true);
 
 
 
@@ -62,18 +66,27 @@ var playState = {
             updateLevelText();
 
         }
+        baddies.papis.forEachAlive(function(papi) {
+            baddies.papiFire();
+        });
+
         game.physics.arcade.collide(baddies.miias);
-        game.physics.arcade.overlap(player.player, baddies.miias, killPlayer, null, this);
+        game.physics.arcade.collide(baddies.papis);
+
+
+        //game.physics.arcade.overlap(player.player, baddies.miias, killPlayer, null, this);
         game.physics.arcade.overlap(weapon.shots, baddies.miias, hitBaddie, null, this);
+        game.physics.arcade.overlap(weapon.shots, baddies.papis, hitBaddie, null, this);
         game.physics.arcade.overlap(player.player, coins, pickUp, null, this);
 
         baddies.miias.forEach(function (baddie) {
             game.physics.arcade.moveToObject(baddie, player.player, 125)
         });
 
+
         player.stop();
 
-        baddies.spawnBaddie();
+        baddies.spawnBaddie(game.rnd.integerInRange(0,1));
         if (this.wasd.left.isDown) {
             //  Move left
             player.left();
@@ -99,7 +112,9 @@ var playState = {
         if (game.input.activePointer.isDown)
         {
             weapon.fire(player);
+            weapon.fire(player, 180);
         }
+
 
     },
 
@@ -123,7 +138,15 @@ function killPlayer(guy, enemy) {
 }
 
 function pickUp(guy, coin) {
+
+/*
+    coin.children.forEach(
+        function(child) {
+            child.kill();
+        }
+    )*/
 	coin.kill();
+
 	player.currency += 1;
 	currencyText.text = ': ' + player.currency;
     pickUpSound.play();
@@ -133,8 +156,16 @@ function pickUp(guy, coin) {
 function spawnCoin(location) {
 	let chance = game.rnd.integerInRange(0,3);
 	if(chance == 0){
-		let coin = coins.getFirstDead();
+        let coin = coins.getFirstDead();
 		coin.reset(location.x, location.y);
+
+        var emitter = game.add.emitter(location.x + 7, location.y + 8, 50);
+        emitter.makeParticles('coinParticle');
+        emitter.setAlpha(.1, .5);
+        emitter.gravity = -50;
+        emitter.minParticleSpeed.setTo(-50);
+        emitter.maxParticleSpeed.setTo(50);
+        emitter.flow(300, 1, 3, 15);
 	}
 }
 

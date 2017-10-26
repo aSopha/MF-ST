@@ -1,10 +1,14 @@
 class Player {
     constructor() {
         this.player
-        this.speed = 300;
+        this.speed = 250;
         this.currency = 0;
     }
 
+    reset() {
+        this.speed = 250;
+        this.currency = 0;
+    }
     get xVelocity() {
         return this.player.body.velocity.x;
     }

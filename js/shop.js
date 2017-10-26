@@ -5,7 +5,7 @@ var shopState = {
         //  A simple background for our game
         game.add.sprite(0, 0, 'background');
 
-        this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+        this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
         levelText = game.add.text(8, 0, 'Level: 0', { fontSize : '50px', fill: '#F0F0F0'});
         updateLevelText();
@@ -16,13 +16,22 @@ var shopState = {
     	currencyPic.addChild(currencyText);
         updateCurrency();
 
-        let leaveText = game.add.text(game.world.width/2, 100, 'Hit Enter to Leave!', { fontSize : '50px', fill: '#F0F0F0'});
+        let leaveText = game.add.text(game.world.width/2, game.world.height - 100, 'Hit Space to Continue!', { fontSize : '50px', fill: '#F0F0F0'});
     	leaveText.anchor.setTo(0.5, 0.5);
 
 
-        fireRateButton = game.add.button(250, 20, 'button', buyFireRate);
-        fireSpeedButton = game.add.button(350, 20, 'button', buyFireSpeed);
-        playerSpeedButton = game.add.button(450, 20, 'button', buyPlayerSpeed);
+    //    fireRateButton = game.add.button(250, 20, 'button', buyFireRate);
+    //    fireSpeedButton = game.add.button(350, 20, 'button', buyFireSpeed);
+    //    playerSpeedButton = game.add.button(450, 20, 'button', buyPlayerSpeed);
+        createButton(250, 20, 'Fire Rate\nUpgrade', buyFireRate);
+        createButton(350, 20, 'Projectile\n  Speed', buyFireSpeed);
+        createButton(450, 20, 'Player\nSpeed', buyPlayerSpeed);
+
+        if(!weapon.isMax()) {
+            createButton(550, 20, 'Weapon\nUpgrade', buyWeaponUpgrade);
+        }
+
+
         //button = game.add.button(550, 20, 'button');
         //button = game.add.button(650, 20, 'button');
         //button = game.add.button(750, 20, 'button');
@@ -57,7 +66,13 @@ function buyFireSpeed() {
 
 function buyPlayerSpeed() {
     if(player.spendCurrency(1)) {
-        player.setSpeed(player.speed + 30);
+        player.setSpeed(player.speed + 12.5);
         console.log(player.speed);
+    }
+}
+
+function buyWeaponUpgrade() {
+    if(!weapon.isMax() && player.spendCurrency(1)) {
+        weapon.upgradeWeapon();
     }
 }

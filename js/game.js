@@ -41,6 +41,16 @@ function updateCurrency() {
 	currencyText.text = ': ' + player.currency;
 }
 
+function createButton(x, y, name, functionCalled) {
+
+	let button = game.add.button(x, y, 'button', functionCalled);
+    button.name = name;
+    button.smoothed = false;
+
+    let text = game.add.text(x, y + 6,  name, { fontSize : '15px', fill: '#F0F0F0'});
+    text.x += (button.width / 2) - (text.width / 2);
+}
+
 
 /*
 
