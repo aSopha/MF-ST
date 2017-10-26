@@ -53,6 +53,8 @@ class Weapon {
                 this.fireDoubleShot(player, offset);
             } else if(this.weaponType == 2) {
                 this.fireTripleShot(player, offset);
+            } else if(this.weaponType == 3) {
+                this.fireScatterShot(player);
             }
         }
     }
@@ -61,10 +63,7 @@ class Weapon {
         let ball = this.shots.getFirstDead();
         let angle = game.physics.arcade.angleToPointer(player.player)
         angle *= 57.295;
-        console.log(offset);
-        console.log(angle);
         angle += offset;
-        console.log(angle);
 
 
         ball.reset(player.xPos, player.yPos);
@@ -82,6 +81,10 @@ class Weapon {
         this.fireSingleShot(player, offset);
         this.fireSingleShot(player, 120);
         this.fireSingleShot(player, 240);
+    }
+
+    fireScatterShot(player) {
+
     }
 
     setFireRate(newRate) {

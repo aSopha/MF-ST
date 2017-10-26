@@ -4,7 +4,7 @@ var menuState = {
 
         music = game.add.audio('music');
 
-        music.play();
+        //music.play();
         console.log('yeahh');
 
         //  A simple background for our game

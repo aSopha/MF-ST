@@ -2,6 +2,9 @@ var playState = {
 
     create: function() {
 
+        console.log('level: ' + level.currentLevel);
+        console.log('enemies this level: ' + level.enemyCount[level.currentLevel][0]);
+
         //  A simple background for our game
         game.add.sprite(0, 0, 'background');
 
@@ -60,7 +63,7 @@ var playState = {
 
     update: function() {
 
-        if(level.killCount == level.enemiesThisLevel) {
+        if(level.killCount == level.getEnemyCount()) {
             this.shop();
             level.nextLevel();
             updateLevelText();
@@ -86,7 +89,8 @@ var playState = {
 
         player.stop();
 
-        baddies.spawnBaddie(game.rnd.integerInRange(0,1));
+        baddies.spawnBaddie();
+
         if (this.wasd.left.isDown) {
             //  Move left
             player.left();
@@ -124,7 +128,9 @@ var playState = {
 }
 
 function hitBaddie(shot, baddie) {
+
 	level.killCount++;
+    console.log('killed: ' + level.killCount +  '/' + level.getEnemyCount() + ' enemies');
     shot.kill();
     baddie.kill();
 	spawnCoin(baddie);
@@ -171,5 +177,4 @@ function spawnCoin(location) {
 
 function updateLevelText() {
     levelText.text = 'Level: ' + level.currentLevel;
-    console.log(level.currentLevel);
 }

@@ -1,9 +1,8 @@
 class Baddies {
+
     constructor(){
         this.miias;
         this.papis;
-
-
         this.papiNextFire = 0;
         this.papiFireRate;
         this.papiFireSpeed = 200;
@@ -35,8 +34,7 @@ class Baddies {
         this.papiShots.setAll('checkWorldBounds', true);
         this.papiShots.setAll('outOfBoundsKill', true);
     	this.papiShots.tracking = false;
-
-        this.papiFireRate = 1000 / level.enemiesThisLevel;
+        this.papiFireRate = 1000;
     }
 
     setupAll() {
@@ -56,7 +54,8 @@ class Baddies {
             let random = game.rnd.integerInRange(0, livingPapis.length -1);
             let angle = game.physics.arcade.angleBetween(livingPapis[random], player.player);
             let angleDegrees = angle*  57.295;
-            this.papiNextFire = game.time.now + this.papiFireRate*(level.enemiesThisLevel - (livingPapis.length -1));
+            this.papiNextFire = game.time.now + this.papiFireRate/(livingPapis.length);
+            console.log(this.papiFireRate/(livingPapis.length));
             let ball = this.papiShots.getFirstDead();
             ball.reset(livingPapis[random].x, livingPapis[random].y);
     		ball.anchor.setTo(0.5, 0.5);
@@ -65,7 +64,57 @@ class Baddies {
         }
     }
 
+    spawnBaddie() {
 
+        let types = [this.miias,this.papis];
+
+    	if(level.enemiesRemaining <=0 || level.over == true) {
+    		return;
+    	}
+        let liveBaddieCount = [0,0];
+
+
+
+        this.miias.forEachAlive(function(miia) {
+            liveBaddieCount[0]++;
+        });
+
+        this.papis.forEachAlive(function(papi) {
+            liveBaddieCount[1]++;
+        });
+
+        //console.log('live miias: ' + liveBaddieCount[0]);
+        //console.log('live papis: ' + liveBaddieCount[1]);
+        for(let i = 0; i < 2; i++) {
+            if(liveBaddieCount[i] < level.maxActive[level.currentLevel][i]
+                && level.enemyTypeRemaining[level.currentLevel][i] > 0) {
+                let baddie = types[i].getFirstDead();
+            	if(baddie === null) {
+                    console.log('no dead baddies');
+            		return;
+            	}
+                baddie.revive();
+
+            	let location = this.chooseLocation();
+
+                baddie.body.velocity.x = game.rnd.integerInRange(-100, 100);
+                baddie.body.velocity.y = game.rnd.integerInRange(-100, 100);
+
+                baddie.x = location.x;
+                baddie.y = location.y;
+
+            	level.enemiesRemaining--;
+                level.enemyTypeRemaining[level.currentLevel][i]--;
+
+                console.log(level.getEnemyCount());
+                //return baddie;
+            } else {
+
+            }
+        }
+
+
+    }
 
     chooseLocation() {
     	let location = {
@@ -90,33 +139,5 @@ class Baddies {
     		location.y = randy;
     	}
     	return location;
-    }
-
-    spawnBaddie(type) {
-
-        let types = [this.miias,this.papis];
-
-    	if(level.enemiesRemaining <=0 || level.over == true) {
-    		return;
-    	}
-
-        let baddie = types[type].getFirstDead();
-    	if(baddie === null) {
-            console.log('no dead baddies');
-    		return;
-    	}
-        baddie.revive();
-
-    	let location = this.chooseLocation();
-
-        baddie.body.velocity.x = game.rnd.integerInRange(-100, 100);
-        baddie.body.velocity.y = game.rnd.integerInRange(-100, 100);
-
-        baddie.x = location.x;
-        baddie.y = location.y;
-
-    	level.enemiesRemaining--;
-        console.log('spawning baddie');
-        return baddie;
     }
 }
