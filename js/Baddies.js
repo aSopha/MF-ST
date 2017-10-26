@@ -2,11 +2,18 @@ class Baddies {
 
     constructor(){
         this.miias;
+        this.miiaSpawnRate = 300;
+        this.nextMiiaSpawn = 0;
         this.papis;
         this.papiNextFire = 0;
         this.papiFireRate;
         this.papiFireSpeed = 200;
         this.papiShots;
+        this.papiSpawnRate = 300;
+        this.nextPapiSpawn = 300;
+
+        this.spawnRates = [this.miiaSpawnRate , this.papiSpawnRate];
+        this.nextSpawns = [this.nextMiiaSpawn , this.nextPapiSpawn];
 
     }
 
@@ -42,20 +49,21 @@ class Baddies {
         this.setupPapis();
     }
 
+    //Randomly select a papi to fire
     papiFire() {
-        let livingPapis = [];
-        livingPapis.length = 0;
-        this.papis.forEachAlive(function(papi) {
-            livingPapis.push(papi);
-        });
-
         if (game.time.now > this.papiNextFire)
         {
+            let livingPapis = [];
+            livingPapis.length = 0;
+            this.papis.forEachAlive(function(papi) {
+                livingPapis.push(papi);
+            });
+
             let random = game.rnd.integerInRange(0, livingPapis.length -1);
             let angle = game.physics.arcade.angleBetween(livingPapis[random], player.player);
             let angleDegrees = angle*  57.295;
             this.papiNextFire = game.time.now + this.papiFireRate/(livingPapis.length);
-            console.log(this.papiFireRate/(livingPapis.length));
+            //console.log(this.papiFireRate/(livingPapis.length));
             let ball = this.papiShots.getFirstDead();
             ball.reset(livingPapis[random].x, livingPapis[random].y);
     		ball.anchor.setTo(0.5, 0.5);
@@ -64,7 +72,7 @@ class Baddies {
         }
     }
 
-    spawnBaddie() {
+    spawnBaddie(currentLevel) {
 
         let types = [this.miias,this.papis];
 
@@ -72,8 +80,6 @@ class Baddies {
     		return;
     	}
         let liveBaddieCount = [0,0];
-
-
 
         this.miias.forEachAlive(function(miia) {
             liveBaddieCount[0]++;
@@ -86,30 +92,29 @@ class Baddies {
         //console.log('live miias: ' + liveBaddieCount[0]);
         //console.log('live papis: ' + liveBaddieCount[1]);
         for(let i = 0; i < 2; i++) {
-            if(liveBaddieCount[i] < level.maxActive[level.currentLevel][i]
-                && level.enemyTypeRemaining[level.currentLevel][i] > 0) {
-                let baddie = types[i].getFirstDead();
-            	if(baddie === null) {
-                    console.log('no dead baddies');
-            		return;
-            	}
-                baddie.revive();
+            console.log('looping');
+            if(liveBaddieCount[i] < level.maxActive[currentLevel][i]
+                && level.enemyTypeRemaining[currentLevel][i] > 0) {
 
-            	let location = this.chooseLocation();
+                if(game.time.now > this.nextSpawns[i]) {
+                    this.nextSpawns[i] = game.time.now + this.spawnRates[i];
+                    let baddie = types[i].getFirstDead();
+                	if(baddie === null) {
+                        console.log('no dead baddies');
+                		return;
+                	}
+                    baddie.revive();
+                	let location = this.chooseLocation();
 
-                baddie.body.velocity.x = game.rnd.integerInRange(-100, 100);
-                baddie.body.velocity.y = game.rnd.integerInRange(-100, 100);
+                    baddie.body.velocity.x = game.rnd.integerInRange(-100, 100);
+                    baddie.body.velocity.y = game.rnd.integerInRange(-100, 100);
 
-                baddie.x = location.x;
-                baddie.y = location.y;
+                    baddie.x = location.x;
+                    baddie.y = location.y;
 
-            	level.enemiesRemaining--;
-                level.enemyTypeRemaining[level.currentLevel][i]--;
-
-                console.log(level.getEnemyCount());
-                //return baddie;
-            } else {
-
+                	level.enemiesRemaining--;
+                    level.enemyTypeRemaining[level.currentLevel][i]--;
+                }
             }
         }
 

@@ -89,7 +89,7 @@ var playState = {
 
         player.stop();
 
-        baddies.spawnBaddie();
+        baddies.spawnBaddie(level.currentLevel);
 
         if (this.wasd.left.isDown) {
             //  Move left

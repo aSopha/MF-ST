@@ -20,11 +20,11 @@ class Level {
             [10, 3],
             [15, 4],
             [25, 5],
-            [999,999]
+            [25,25]
         ];
         this.enemyTypeRemaining = this.fillEnemyTypeCount();
         this.enemiesRemaining = this.getEnemyCount();
-        this.levelCount = 5;
+        this.levelCount = 6;
         this.over = false;
         //console.log('current level: ' + this.currentLevel + 'enemies remaining' + this.enemiesRemaining);
     }
@@ -59,6 +59,8 @@ class Level {
     }
     nextLevel() {
         this.currentLevel++;
+        console.log(this.currentLevel);
+        console.log(this.levelCount);
         if(this.currentLevel >= this.levelCount) {
             console.log('win');
             game.state.start('win');
@@ -83,7 +85,6 @@ class Level {
         this.enemyTypeRemaining = this.fillEnemyTypeCount();
         this.currentLevel = 0;
         this.killCount = 0;
-        this.levelCount = 5;
         this.enemiesRemaining = this.getEnemyCount();
         this.over = false;
     }
