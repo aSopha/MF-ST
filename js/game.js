@@ -20,12 +20,16 @@ let weapon = new Weapon();
 let baddies = new Baddies();
 
 let pickUpSound;
+let music;
+
+
 
 function preload() {
 
 }
 
 function create() {
+
 
 }
 

@@ -17,6 +17,7 @@ var overState = {
 
     restart: function() {
         game.state.start('menu');
-        level.reset() = 0;
+        music.stop();
+        level.reset();
     }
 }

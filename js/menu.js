@@ -2,7 +2,11 @@ var menuState = {
 
     create: function() {
 
-        
+        music = game.add.audio('music');
+
+        music.play();
+        console.log('yeahh');
+
         //  A simple background for our game
         game.add.sprite(0, 0, 'background');
 

@@ -17,14 +17,16 @@ class Weapon {
     	this.shots.tracking = false;
     }
 
-    fire() {
+    fire(player) {
         if (game.time.now > this.nextFire)
         {
+            let angle = game.physics.arcade.angleToPointer(player.player)
+            angle *= 57.295;
             this.nextFire = game.time.now + this.fireRate;
             let ball = this.shots.getFirstDead();
-            ball.reset(player.xPos, player.yPos );
+            ball.reset(player.xPos, player.yPos);
     		ball.anchor.setTo(0.5, 0.5);
-            game.physics.arcade.moveToPointer(ball, this.fireSpeed);
+            ball.game.physics.arcade.velocityFromAngle(angle, this.fireSpeed, ball.body.velocity);
     		ball.rotation = game.physics.arcade.angleToPointer(ball) + 1.6;
         }
     }

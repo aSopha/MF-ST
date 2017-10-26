@@ -63,7 +63,7 @@ var playState = {
 
         }
         game.physics.arcade.collide(baddies.miias);
-        //game.physics.arcade.overlap(player.player, baddies.miias, killPlayer, null, this);
+        game.physics.arcade.overlap(player.player, baddies.miias, killPlayer, null, this);
         game.physics.arcade.overlap(weapon.shots, baddies.miias, hitBaddie, null, this);
         game.physics.arcade.overlap(player.player, coins, pickUp, null, this);
 
@@ -98,7 +98,7 @@ var playState = {
         //Left mouse button to shoot
         if (game.input.activePointer.isDown)
         {
-            weapon.fire();
+            weapon.fire(player);
         }
 
     },
