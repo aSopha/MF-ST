@@ -45,12 +45,12 @@ function toggleMusic() {
         music.volume = .3;
         musicMuted = false;
         musicButton.pendingDestroy = true;
-        musicButton = game.add.button(110, game.world.height - 100, 'musicOn', toggleMusic);
+        drawMusicButton();
     } else {
         musicMuted = true;
         music.volume = 0;
         musicButton.pendingDestroy = true;
-        musicButton = game.add.button(110, game.world.height - 100, 'musicOff', toggleMusic);
+        drawMusicButton();
     }
 }
 
@@ -58,26 +58,26 @@ function toggleSfx() {
     if(sfxMuted) {
         sfxMuted = false;
         sfxButton.pendingDestroy = true;
-        sfxButton = game.add.button(0, game.world.height - 100, 'sfxOn', toggleSfx);
+        drawSfxButton()
     } else {
         sfxMuted = true;
         sfxButton.pendingDestroy = true;
-        sfxButton = game.add.button(0, game.world.height - 100, 'sfxOff', toggleSfx);
+        drawSfxButton()
     }
 }
 
 function drawSfxButton() {
     if(sfxMuted) {
-        sfxButton = game.add.button(0, game.world.height - 100, 'sfxOff', toggleSfx);
+        sfxButton = game.add.button(20, game.world.height - 80, 'sfxOff', toggleSfx);
     } else {
-        sfxButton = game.add.button(0, game.world.height - 100, 'sfxOn', toggleSfx);
+        sfxButton = game.add.button(20, game.world.height - 80, 'sfxOn', toggleSfx);
     }
 }
 
 function drawMusicButton() {
     if(musicMuted) {
-        musicButton = game.add.button(110, game.world.height - 100, 'musicOff', toggleMusic);
+        musicButton = game.add.button(110, game.world.height - 80, 'musicOff', toggleMusic);
     } else {
-        musicButton = game.add.button(110, game.world.height - 100, 'musicOn', toggleMusic);
+        musicButton = game.add.button(110, game.world.height - 80, 'musicOn', toggleMusic);
     }
 }
