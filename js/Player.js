@@ -78,12 +78,12 @@ class Player {
     }
 
     setup() {
-        this.player = game.add.sprite(game.world.width/2, game.world.height/2, 'wartortle');
+        this.player = game.add.sprite(game.world.width/2, game.world.height/2, 'player');
         this.player.anchor.setTo(0.5, 0.5);
     	game.physics.arcade.enable(this.player);
         this.player.body.width = 10;
         this.player.body.height = 10;
-        this.player.body.offset.setTo(13,13);
+        this.player.body.offset.setTo(10,10);
     	this.player.enableBody = true;
     	this.player.physicsBodyType = Phaser.Physics.ARCADE;
     	this.player.body.collideWorldBounds = true;

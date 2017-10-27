@@ -2,7 +2,7 @@ var loadState = {
 
     preload: function() {
         game.load.image('background', 'assets/ghostBackground.jpg');
-        game.load.image('wartortle', 'assets/Wartortle.png');
+        game.load.image('player', 'assets/player.png');
         game.load.image('ball', 'assets/ball.png');
         game.load.image('papiShot', 'assets/papiball.png');
         game.load.image('miia', 'assets/miia4.png');

@@ -63,6 +63,11 @@ var playState = {
 
     update: function() {
 
+
+        //game.debug.bodyInfo(player.player, 32, 32);
+        //game.debug.body(player.player);
+        //game.debug.spriteCorners(player.player, true, true);
+
         if(level.killCount == level.getEnemyCount()) {
 
             game.time.events.add(1000, this.shop, this);
@@ -93,9 +98,11 @@ var playState = {
 
         baddies.spawnBaddie(level.currentLevel);
 
+        //Rotate the player according to where the pointer is.
+        player.player.rotation = game.physics.arcade.angleToPointer(player.player);
+
         if (this.wasd.left.isDown) {
             //  Move left
-
             player.left();
         }
         if (this.wasd.right.isDown) {
