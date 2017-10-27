@@ -8,7 +8,9 @@ There's a shop where the player can spend the currency the enemies drop.
 
 ToDo:
 
-Score system
-Add more enemies
-Add different weapon types
-Add actual sprites instead of these placeholders
+1. Score system
+2. Add more enemies
+3. Add different weapon types
+4. Add actual sprites instead of these placeholders
+5. Add prices to the store
+6. Add changing prices
