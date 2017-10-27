@@ -1,8 +1,10 @@
 class Player {
     constructor() {
         this.player
-        this.speed = 250;
-        this.currency = 0;
+        this.speed = [250,275,300,325,350,375,400,450,500,600,650,700];
+        this.speedLevel = 0;
+        this.maxSpeedLevel = this.speed.length -1;
+        this.currency = 500;
         this.dead = false;
     }
 
@@ -11,7 +13,7 @@ class Player {
         this.dead = true;
     }
     reset() {
-        this.speed = 250;
+        this.speedLevel = 0;
         this.currency = 0;
         this.dead = false;
     }
@@ -35,28 +37,32 @@ class Player {
         return this.speed;
     }
 
+    getSpeedLevel() {
+        return this.speedLevel;
+    }
+
     setSpeed(newSpeed) {
-        this.speed = newSpeed;
+        this.speedLevel = newSpeed;
     }
 
     //Move Up
     up() {
-        this.player.body.velocity.y = -1*this.speed;
+        this.player.body.velocity.y = -1*this.speed[this.speedLevel];
     }
 
     //Move Right
     right() {
-        this.player.body.velocity.x = this.speed;
+        this.player.body.velocity.x = this.speed[this.speedLevel];
     }
 
     //Move Down
     down() {
-        this.player.body.velocity.y = this.speed;
+        this.player.body.velocity.y = this.speed[this.speedLevel];
     }
 
     //Move Left
     left() {
-        this.player.body.velocity.x = -1*this.speed;
+        this.player.body.velocity.x = -1*this.speed[this.speedLevel];
     }
 
     //Stop the player

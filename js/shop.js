@@ -1,7 +1,13 @@
 var shopState = {
 
+
     create: function() {
 
+
+        //Weapon upgrade Prices
+        weaponTypePrices = [5,10,15];
+        //Store Prices
+        standardPrices = [1,1,2,2,3,4,5,6,7,10,25, 'x'];
         //  A simple background for our game
         game.add.sprite(0, 0, 'background');
 
@@ -19,23 +25,17 @@ var shopState = {
         let leaveText = game.add.text(game.world.width/2, game.world.height - 100, 'Hit Space to Continue!', { fontSize : '50px', fill: '#F0F0F0'});
     	leaveText.anchor.setTo(0.5, 0.5);
 
-
-    //    fireRateButton = game.add.button(250, 20, 'button', buyFireRate);
-    //    fireSpeedButton = game.add.button(350, 20, 'button', buyFireSpeed);
-    //    playerSpeedButton = game.add.button(450, 20, 'button', buyPlayerSpeed);
-        createButton(250, 20, 'Fire Rate\nUpgrade', buyFireRate, 'button');
-        createButton(350, 20, 'Projectile\n  Speed', buyFireSpeed, 'button');
-        createButton(450, 20, 'Player\nSpeed', buyPlayerSpeed, 'button');
-
+        fireRateText = createButton(250, 20, 'Fire Rate\nUpgrade', this.buyFireRate, 'button');
+        fireSpeedText = createButton(350, 20, 'Projectile\n  Speed', this.buyFireSpeed, 'button');
+        playerSpeedText = createButton(450, 20, 'Player\nSpeed', this.buyPlayerSpeed, 'button');
         if(!weapon.isMax()) {
-            createButton(550, 20, 'Weapon\nUpgrade', buyWeaponUpgrade, 'button');
+            weaponUpgradeText = createButton(550, 20, 'Weapon\nUpgrade', this.buyWeaponUpgrade, 'button');
         }
 
-
-        //button = game.add.button(550, 20, 'button');
-        //button = game.add.button(650, 20, 'button');
-        //button = game.add.button(750, 20, 'button');
-    //    button = game.add.button(850, 20, 'button');
+        updatePrice(fireRateText, standardPrices[weapon.getFireRateLevel()]);
+        updatePrice(fireSpeedText, standardPrices[weapon.getFireSpeedLevel()]);
+        updatePrice(playerSpeedText, standardPrices[player.getSpeedLevel()]);
+        updatePrice(weaponUpgradeText, weaponTypePrices[weapon.getWeaponType()]);
 
         this.spaceKey.onDown.addOnce(this.start, this);
     },
@@ -47,34 +47,53 @@ var shopState = {
     start: function() {
         game.state.start('play');
         level.over = false;
-    }
-}
+    },
 
-function buyFireRate() {
-    if(player.spendCurrency(1)) {
-        weapon.setFireRate(weapon.fireRate*.9);
-        console.log(weapon.fireRate);
-    }
-}
+    buyFireRate: function() {
+        let upgradeLevel = weapon.getFireRateLevel();
+        if(upgradeLevel >= weapon.maxFireRateLevel) {
+            return;
+        }
+        if(player.spendCurrency(standardPrices[upgradeLevel++])) {
+            weapon.setFireRate(weapon.getFireRateLevel()+1);
+            updatePrice(fireRateText, standardPrices[upgradeLevel]);
+        }
+    },
 
-function buyFireSpeed() {
-    if(player.spendCurrency(1)) {
-        weapon.setFireSpeed(weapon.fireSpeed*1.1);
-        console.log(weapon.fireSpeed);
-    }
-}
+    buyFireSpeed: function() {
+        let upgradeLevel = weapon.getFireSpeedLevel();
+        if(upgradeLevel >= weapon.maxFireSpeedLevel) {
+            return;
+        }
+        if(player.spendCurrency(standardPrices[upgradeLevel++])) {
+            weapon.setFireSpeed(weapon.getFireSpeedLevel()+ 1);
+            updatePrice(fireSpeedText, standardPrices[upgradeLevel]);
+        }
+    },
 
-function buyPlayerSpeed() {
-    if(player.spendCurrency(1)) {
-        player.setSpeed(player.speed + 12.5);
-        console.log(player.speed);
-    }
-}
+    buyPlayerSpeed: function() {
+        let upgradeLevel = player.getSpeedLevel();
+        if(upgradeLevel >= player.maxSpeedLevel) {
 
-function buyWeaponUpgrade() {
-    if(!weapon.isMax() && player.spendCurrency(1)) {
-        if(!weapon.upgradeWeapon()) {
-            createButton(550, 20, 'Weapon\nUpgrade', buyWeaponUpgrade, 'graybutton');
+            return;
+        }
+        if(player.spendCurrency(standardPrices[upgradeLevel++])) {
+            player.setSpeed(player.getSpeedLevel() + 1);
+            updatePrice(playerSpeedText, standardPrices[upgradeLevel]);
+        }
+    },
+
+    buyWeaponUpgrade: function() {
+        let upgradeLevel = weapon.getWeaponType();
+        if(!weapon.isMax() && player.spendCurrency(weaponTypePrices[upgradeLevel++])) {
+            if(!weapon.upgradeWeapon()) {
+                createButton(550, 20, 'Weapon\nUpgrade', this.buyWeaponUpgrade, 'graybutton');
+            }
+            updatePrice(weaponUpgradeText, weaponTypePrices[upgradeLevel]);
         }
     }
+}
+
+function updatePrice(priceText, text) {
+    priceText.text = text;
 }

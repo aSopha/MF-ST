@@ -1,16 +1,21 @@
 class Weapon {
     constructor() {
         this.shots;
-        this.fireRate = 500;
-        this.fireSpeed = 300;
+        this.fireRate = [500,450,400,350,300,250,200,166,133,100,70,35];
+        this.fireSpeed = [300,325,350,375,400,450,500,575,650,750,800,1000];
         this.nextFire = 0;
         this.weaponType = 0;
         this.weaponTypeMax = 2;
+
+        this.fireRateLevel = 0;
+        this.maxFireRateLevel = this.fireRate.length -1;
+        this.fireSpeedLevel = 0;
+        this.maxFireSpeedLevel = this.fireSpeed.length -1;
     }
 
     reset() {
-        this.fireRate = 500;
-        this.fireSpeed = 300;
+        this.fireRateLevel = 0;
+        this.fireSpeedLevel = 0;
         this.nextFire = 0;
         this.weaponType = 0;
     }
@@ -50,7 +55,7 @@ class Weapon {
         }
         if (game.time.now > this.nextFire)
         {
-            this.nextFire = game.time.now + this.fireRate;
+            this.nextFire = game.time.now + this.fireRate[this.fireRateLevel];
             if(this.weaponType == 0) {
                 this.fireSingleShot(player, offset);
             } else if(this.weaponType == 1) {
@@ -72,7 +77,7 @@ class Weapon {
 
         ball.reset(player.xPos, player.yPos);
         ball.anchor.setTo(0.5, 0.5);
-        ball.game.physics.arcade.velocityFromAngle(angle, this.fireSpeed, ball.body.velocity);
+        ball.game.physics.arcade.velocityFromAngle(angle, this.fireSpeed[this.fireSpeedLevel], ball.body.velocity);
         ball.rotation = game.physics.arcade.angleToPointer(ball) + 1.57 + offset/57;
     }
 
@@ -91,15 +96,27 @@ class Weapon {
 
     }
 
+    getFireRateLevel() {
+        return this.fireRateLevel;
+    }
+
     setFireRate(newRate) {
-        this.fireRate = newRate;
+        this.fireRateLevel = newRate;
+    }
+
+    getFireSpeedLevel() {
+        return this.fireSpeedLevel;
     }
 
     setFireSpeed(newSpeed) {
-        this.fireSpeed = newSpeed;
+        this.fireSpeedLevel = newSpeed;
     }
 
     setWeaponType(newType) {
         this.weaponType = newType;
+    }
+
+    getWeaponType() {
+        return this.weaponType;
     }
 }
