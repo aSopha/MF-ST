@@ -16,7 +16,6 @@ var winState = {
 
     restart: function() {
         game.state.start('menu');
-        music.stop();
         level.reset();
         weapon.reset();
         player.reset();
