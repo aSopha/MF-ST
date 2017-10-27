@@ -12,5 +12,3 @@ ToDo:
 2. Add more enemies
 3. Add different weapon types
 4. Add actual sprites instead of these placeholders
-5. Add prices to the store
-6. Add changing prices
