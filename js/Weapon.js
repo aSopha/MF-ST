@@ -38,6 +38,10 @@ class Weapon {
             return false;
         }
         this.weaponType++;
+        if(this.weaponType == this.weaponTypeMax) {
+            return false;
+        }
+        return true;
     }
 
     fire(player, offset) {

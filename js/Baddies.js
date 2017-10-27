@@ -93,7 +93,7 @@ class Baddies {
         //console.log('live miias: ' + liveBaddieCount[0]);
         //console.log('live papis: ' + liveBaddieCount[1]);
         for(let i = 0; i < 2; i++) {
-            console.log('looping');
+            //console.log('looping');
             if(liveBaddieCount[i] < level.maxActive[currentLevel][i]
                 && level.enemyTypeRemaining[currentLevel][i] > 0) {
 

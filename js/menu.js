@@ -2,14 +2,7 @@ var menuState = {
 
     create: function() {
 
-        music = game.add.audio('music');
 
-        music.loopFull();
-        if(musicMuted) {
-            music.volume = 0;
-        } else {
-            music.volume = .3;
-        }
 
         console.log('yeahh');
 

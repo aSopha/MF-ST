@@ -27,7 +27,7 @@ var playState = {
     	coins.createMultiple(150, 'drop');
 
         coins.forEach(function(coin) {
-            console.log('resized coin');
+            //console.log('resized coin');
             coin.body.height = 35;
             coin.body.width = 35;
             coin.body.offset.setTo(-7,-7);

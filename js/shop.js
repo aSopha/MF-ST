@@ -73,6 +73,8 @@ function buyPlayerSpeed() {
 
 function buyWeaponUpgrade() {
     if(!weapon.isMax() && player.spendCurrency(1)) {
-        weapon.upgradeWeapon();
+        if(!weapon.upgradeWeapon()) {
+            createButton(550, 20, 'Weapon\nUpgrade', buyWeaponUpgrade, 'graybutton');
+        }
     }
 }
