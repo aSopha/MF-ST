@@ -4,10 +4,16 @@ var menuState = {
 
         music = game.add.audio('music');
 
-        //music.play();
+        music.loopFull();
+        if(musicMuted) {
+            music.volume = 0;
+        } else {
+            music.volume = .3;
+        }
+
         console.log('yeahh');
 
-        //  A simple background for our game
+        //  A simple background for the game
         game.add.sprite(0, 0, 'background');
 
         let nameLabel = game.add.text(game.world.width/2, 80, 'Game Title',
@@ -21,9 +27,57 @@ var menuState = {
         var enterkey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
         enterkey.onDown.addOnce(this.start, this);
+
+
+        drawSfxButton();
+        drawMusicButton();
+
     },
 
     start: function() {
         game.state.start('play');
     }
+
+
 };
+function toggleMusic() {
+    if(musicMuted) {
+        music.volume = .3;
+        musicMuted = false;
+        musicButton.pendingDestroy = true;
+        musicButton = game.add.button(110, game.world.height - 100, 'musicOn', toggleMusic);
+    } else {
+        musicMuted = true;
+        music.volume = 0;
+        musicButton.pendingDestroy = true;
+        musicButton = game.add.button(110, game.world.height - 100, 'musicOff', toggleMusic);
+    }
+}
+
+function toggleSfx() {
+    if(sfxMuted) {
+        sfxMuted = false;
+        sfxButton.pendingDestroy = true;
+        sfxButton = game.add.button(0, game.world.height - 100, 'sfxOn', toggleSfx);
+    } else {
+        sfxMuted = true;
+        sfxButton.pendingDestroy = true;
+        sfxButton = game.add.button(0, game.world.height - 100, 'sfxOff', toggleSfx);
+    }
+}
+
+function drawSfxButton() {
+    if(sfxMuted) {
+        sfxButton = game.add.button(0, game.world.height - 100, 'sfxOff', toggleSfx);
+    } else {
+        sfxButton = game.add.button(0, game.world.height - 100, 'sfxOn', toggleSfx);
+    }
+}
+
+function drawMusicButton() {
+    if(musicMuted) {
+        musicButton = game.add.button(110, game.world.height - 100, 'musicOff', toggleMusic);
+    } else {
+        musicButton = game.add.button(110, game.world.height - 100, 'musicOn', toggleMusic);
+    }
+}

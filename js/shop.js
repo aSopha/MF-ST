@@ -23,12 +23,12 @@ var shopState = {
     //    fireRateButton = game.add.button(250, 20, 'button', buyFireRate);
     //    fireSpeedButton = game.add.button(350, 20, 'button', buyFireSpeed);
     //    playerSpeedButton = game.add.button(450, 20, 'button', buyPlayerSpeed);
-        createButton(250, 20, 'Fire Rate\nUpgrade', buyFireRate);
-        createButton(350, 20, 'Projectile\n  Speed', buyFireSpeed);
-        createButton(450, 20, 'Player\nSpeed', buyPlayerSpeed);
+        createButton(250, 20, 'Fire Rate\nUpgrade', buyFireRate, 'button');
+        createButton(350, 20, 'Projectile\n  Speed', buyFireSpeed, 'button');
+        createButton(450, 20, 'Player\nSpeed', buyPlayerSpeed, 'button');
 
         if(!weapon.isMax()) {
-            createButton(550, 20, 'Weapon\nUpgrade', buyWeaponUpgrade);
+            createButton(550, 20, 'Weapon\nUpgrade', buyWeaponUpgrade, 'button');
         }
 
 

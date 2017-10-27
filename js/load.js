@@ -10,11 +10,16 @@ var loadState = {
     	game.load.image('coin', 'assets/mistycoin.png');
     	game.load.image('drop', 'assets/mistycoinDrop.png');
     	game.load.image('button', 'assets/button.png');
-        game.load.image('coinParticle', 'assets/coinParticle.png')
-        game.load.image('deathParticle', 'assets/bluespark.png')
+        game.load.image('coinParticle', 'assets/coinParticle.png');
+        game.load.image('deathParticle', 'assets/bluespark.png');
+
+        game.load.image('musicOn', 'assets/musicOn.png');
+        game.load.image('musicOff', 'assets/musicOff.png');
+        game.load.image('sfxOn', 'assets/audioOn.png');
+        game.load.image('sfxOff', 'assets/audioOff.png');
 
         game.load.audio('meow', 'assets/audio/meowing.wav');
-        //game.load.audio('music', 'assets/audio/hydrogen.mp3');
+        game.load.audio('music', 'assets/audio/menu.mp3');
     },
 
     create: function() {

@@ -157,7 +157,9 @@ function pickUp(guy, coin) {
 	coin.kill();
 	player.currency += 1;
 	currencyText.text = ': ' + player.currency;
-    pickUpSound.play();
+    if(!sfxMuted) {
+        pickUpSound.play();
+    }
 }
 
 

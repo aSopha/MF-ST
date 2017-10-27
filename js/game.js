@@ -21,6 +21,10 @@ let baddies = new Baddies();
 
 let pickUpSound;
 let music;
+let musicMuted = false;
+let sfxMuted = false;
+let sfxButton;
+let musicButton;
 
 
 
@@ -41,9 +45,9 @@ function updateCurrency() {
 	currencyText.text = ': ' + player.currency;
 }
 
-function createButton(x, y, name, functionCalled) {
+function createButton(x, y, name, functionCalled, picture) {
 
-	let button = game.add.button(x, y, 'button', functionCalled);
+	let button = game.add.button(x, y, picture, functionCalled);
     button.name = name;
     button.smoothed = false;
 
