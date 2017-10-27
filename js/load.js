@@ -13,7 +13,7 @@ var loadState = {
         game.load.image('coinParticle', 'assets/coinParticle.png')
 
         game.load.audio('meow', 'assets/audio/meowing.wav');
-        game.load.audio('music', 'assets/audio/hydrogen.mp3');
+        //game.load.audio('music', 'assets/audio/hydrogen.mp3');
     },
 
     create: function() {

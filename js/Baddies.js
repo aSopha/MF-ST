@@ -9,8 +9,8 @@ class Baddies {
         this.papiFireRate;
         this.papiFireSpeed = 200;
         this.papiShots;
-        this.papiSpawnRate = 300;
-        this.nextPapiSpawn = 300;
+        this.papiSpawnRate = 500;
+        this.nextPapiSpawn = 0;
 
         this.spawnRates = [this.miiaSpawnRate , this.papiSpawnRate];
         this.nextSpawns = [this.nextMiiaSpawn , this.nextPapiSpawn];

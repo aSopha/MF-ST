@@ -64,7 +64,9 @@ var playState = {
     update: function() {
 
         if(level.killCount == level.getEnemyCount()) {
-            this.shop();
+
+            game.time.events.add(1000, this.shop, this);
+        //    this.shop();
             level.nextLevel();
             updateLevelText();
 
@@ -77,7 +79,8 @@ var playState = {
         game.physics.arcade.collide(baddies.papis);
 
 
-        //game.physics.arcade.overlap(player.player, baddies.miias, killPlayer, null, this);
+        game.physics.arcade.overlap(player.player, baddies.miias, killPlayer, null, this);
+        game.physics.arcade.overlap(player.player, baddies.papiShots, killPlayer, null, this);
         game.physics.arcade.overlap(weapon.shots, baddies.miias, hitBaddie, null, this);
         game.physics.arcade.overlap(weapon.shots, baddies.papis, hitBaddie, null, this);
         game.physics.arcade.overlap(player.player, coins, pickUp, null, this);
@@ -113,10 +116,9 @@ var playState = {
         }
 
         //Left mouse button to shoot
-        if (game.input.activePointer.isDown)
+        if (game.input.activePointer.isDown && player.dead != true)
         {
             weapon.fire(player);
-            weapon.fire(player, 180);
         }
 
 
@@ -137,10 +139,9 @@ function hitBaddie(shot, baddie) {
 }
 
 function killPlayer(guy, enemy) {
-    guy.kill();
+    player.killPlayer();
     enemy.kill();
-    game.state.start('gameOver');
-
+    game.time.events.add(1000, gameOver, this);
 }
 
 function pickUp(guy, coin) {
@@ -177,4 +178,8 @@ function spawnCoin(location) {
 
 function updateLevelText() {
     levelText.text = 'Level: ' + level.currentLevel;
+}
+
+function gameOver() {
+    game.state.start('gameOver');
 }

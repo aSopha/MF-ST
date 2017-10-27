@@ -3,11 +3,17 @@ class Player {
         this.player
         this.speed = 250;
         this.currency = 0;
+        this.dead = false;
     }
 
+    killPlayer() {
+        this.player.kill();
+        this.dead = true;
+    }
     reset() {
         this.speed = 250;
         this.currency = 0;
+        this.dead = false;
     }
     get xVelocity() {
         return this.player.body.velocity.x;
