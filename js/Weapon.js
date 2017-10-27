@@ -1,7 +1,7 @@
 class Weapon {
     constructor() {
         this.shots;
-        this.fireRate = 300;
+        this.fireRate = 500;
         this.fireSpeed = 300;
         this.nextFire = 0;
         this.weaponType = 0;
@@ -9,7 +9,7 @@ class Weapon {
     }
 
     reset() {
-        this.fireRate = 300;
+        this.fireRate = 500;
         this.fireSpeed = 300;
         this.nextFire = 0;
         this.weaponType = 0;

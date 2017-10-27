@@ -10,7 +10,7 @@ var menuState = {
         //  A simple background for our game
         game.add.sprite(0, 0, 'background');
 
-        let nameLabel = game.add.text(game.world.width/2, 80, 'Game',
+        let nameLabel = game.add.text(game.world.width/2, 80, 'Game Title',
             { fontSize : '50px', fill: '#F0F0F0'});
         nameLabel.anchor.setTo(0.5, 0.5);
 

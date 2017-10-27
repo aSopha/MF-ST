@@ -30,6 +30,7 @@ class Baddies {
     setupPapis(papiCount) {
         this.papis = game.add.group();
         this.papis.enableBody = true;
+        this.papis.setAll('checkWorldBounds', true);
         for (var i = 0; i < 25; i++) {
             var papi = this.papis.create(game.world.randomX, game.world.randomY, 'papi');
     		papi.anchor.setTo(0.5,0.5);

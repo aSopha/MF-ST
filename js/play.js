@@ -141,19 +141,20 @@ function hitBaddie(shot, baddie) {
 function killPlayer(guy, enemy) {
     player.killPlayer();
     enemy.kill();
+
+    var emitter = game.add.emitter(guy.x + 10, guy.y , 50);
+    emitter.makeParticles('deathParticle');
+    emitter.setAlpha(.5, .8);
+    emitter.gravity = -50;
+    emitter.minParticleScale = 0.1;
+    emitter.maxParticleScale = 0.5;
+    emitter.flow(1000, 1, 3, 25);
+
     game.time.events.add(1000, gameOver, this);
 }
 
 function pickUp(guy, coin) {
-
-/*
-    coin.children.forEach(
-        function(child) {
-            child.kill();
-        }
-    )*/
 	coin.kill();
-
 	player.currency += 1;
 	currencyText.text = ': ' + player.currency;
     pickUpSound.play();

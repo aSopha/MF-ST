@@ -12,7 +12,7 @@ class Level {
             [20, 6],
             [25, 8],
             [40, 10],
-            [999,999]
+            [100,30]
         ];
         this.maxActive = [
             [5, 1],
@@ -20,7 +20,7 @@ class Level {
             [10, 3],
             [15, 4],
             [25, 5],
-            [25,25]
+            [25,10]
         ];
         this.enemyTypeRemaining = this.fillEnemyTypeCount();
         this.enemiesRemaining = this.getEnemyCount();
