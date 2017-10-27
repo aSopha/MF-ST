@@ -19,6 +19,7 @@ var loadState = {
         game.load.spritesheet('jumprope', 'assets/jumprope.png', 300, 170);
         game.load.spritesheet('headshot', 'assets/headshot.png', 300, 169);
         game.load.spritesheet('headshake', 'assets/headshake.png', 200, 113);
+        game.load.spritesheet('deerheadbutt', 'assets/deerheadbutt.png', 300, 170);
 
         game.load.image('musicOn', 'assets/musicOn.png');
         game.load.image('musicOff', 'assets/musicOff.png');

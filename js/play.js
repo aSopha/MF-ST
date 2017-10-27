@@ -89,13 +89,14 @@ var playState = {
             game.physics.arcade.moveToObject(baddie, player.player, 125)
         });
 
-
+        //this.shop();
         player.stop();
 
         baddies.spawnBaddie(level.currentLevel);
 
         if (this.wasd.left.isDown) {
             //  Move left
+
             player.left();
         }
         if (this.wasd.right.isDown) {
@@ -125,7 +126,10 @@ var playState = {
     },
 
     shop: function() {
-        game.state.start('shop');
+        if(!player.dead) {
+            game.state.start('shop');
+        }
+
     }
 }
 

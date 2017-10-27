@@ -53,6 +53,9 @@ function createButton(x, y, name, functionCalled, picture) {
 
     let text = game.add.text(x, y + 6,  name, { fontSize : '15px', fill: '#F0F0F0'});
     text.x += (button.width / 2) - (text.width / 2);
+
+	let price = game.add.text(x, y + 55,  '(price)', { fontSize : '15px', fill: '#F0F0F0'});
+    price.x += (button.width / 2) - (price.width / 2);
 }
 
 

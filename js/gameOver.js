@@ -12,9 +12,10 @@ var overState = {
 
         makeAnimation(50,50,'fail', 12);
         makeAnimation(game.world.width-300, 50, 'yeahOk',12);
-        makeAnimation(game.world.width/2 -100, 300, 'jumprope',24);
+        makeAnimation(game.world.width/2 -125, 220, 'jumprope',24);
         makeAnimation(game.world.width-330, 420, 'headshot', 9);
         makeAnimation(30, 440, 'headshake', 12);
+        makeAnimation(330, 400, 'deerheadbutt', 12);
 
         var enterkey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
