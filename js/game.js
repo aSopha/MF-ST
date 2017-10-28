@@ -58,7 +58,7 @@ function updateCurrency() {
 
 function createButton(x, y, name, functionCalled, picture) {
 
-	let button = game.add.button(x, y, picture, functionCalled);
+	let button = game.add.button(x, y, picture, functionCalled, this,  1, 0 , 2);
     button.name = name;
     button.smoothed = false;
 	button.anchor.setTo(0.5, 0);
