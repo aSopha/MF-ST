@@ -76,9 +76,11 @@ function createButton(x, y, name, functionCalled, picture) {
 }
 
 function playUpgradeSound() {
-	let upgradeSound = game.add.audio('upgrade');
-	upgradeSound.volume = .5
-	upgradeSound.play();
+	if(!sfxMuted) {
+		let upgradeSound = game.add.audio('upgrade');
+		upgradeSound.volume = .3;
+		upgradeSound.play();
+	}
 }
 
 
