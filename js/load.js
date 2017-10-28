@@ -33,6 +33,9 @@ var loadState = {
     create: function() {
         music = game.add.audio('music');
 
+        //Disable Right click
+        game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
+
         music.loopFull();
         if(musicMuted) {
             music.volume = 0;

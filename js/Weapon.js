@@ -6,6 +6,7 @@ class Weapon {
         this.nextFire = 0;
         this.weaponType = 0;
         this.weaponTypeMax = 2;
+        this.weaponTypeNames = ['Single Shot', 'Double Shot', 'Triple Shot']
 
         this.fireRateLevel = 0;
         this.maxFireRateLevel = this.fireRate.length -1;
@@ -118,5 +119,9 @@ class Weapon {
 
     getWeaponType() {
         return this.weaponType;
+    }
+
+    getWeaponTypeName() {
+        return this.weaponTypeNames[this.weaponType];
     }
 }

@@ -36,6 +36,10 @@ let fireSpeedText;
 let playerSpeedText;
 let weaponUpgradeText;
 
+let fireRateLevelText;
+let fireSpeedLevelText;
+let playerSpeedLevelText;
+let weaponTypeText;
 function preload() {
 
 }
