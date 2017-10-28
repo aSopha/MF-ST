@@ -1,7 +1,7 @@
 class Player {
     constructor() {
         this.player
-        this.speed = [250,275,300,325,350,375,400,450,500,600,650,700];
+        this.speed = [210,240,280,315,350,375,400,450,500,600,650,700];
         this.speedLevel = 0;
         this.maxSpeedLevel = this.speed.length -1;
         this.currency = 0;
