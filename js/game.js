@@ -61,14 +61,18 @@ function createButton(x, y, name, functionCalled, picture) {
 	let button = game.add.button(x, y, picture, functionCalled);
     button.name = name;
     button.smoothed = false;
+	button.anchor.setTo(0.5, 0);
 
-    let text = game.add.text(x, y + 6,  name, { fontSize : '15px', fill: '#F0F0F0'});
+    let text = game.add.text(-38, 6,  name, { fontSize : '15px', fill: '#F0F0F0'});
     text.x += (button.width / 2) - (text.width / 2);
 
-	let price = game.add.text(x, y + 57,  '  ', { fontSize : '15px', fill: '#F0F0F0'});
-    price.x += (button.width / 2) - (price.width / 2) + 5;
+	let price = game.add.text(-20, 55,  '  ', { fontSize : '15px', fill: '#F0F0F0'});
+    price.x += (button.width / 2) - (price.width / 2);
+	price.anchor.setTo(0.5, 0);
 
-	let currencyIcon = game.add.sprite(-24, -1, 'drop');
+	let currencyIcon = game.add.sprite(-30, -1, 'drop');
+	button.addChild(price);
+	button.addChild(text);
 	price.addChild(currencyIcon);
 	return price;
 

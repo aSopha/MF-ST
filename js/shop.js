@@ -8,6 +8,9 @@ var shopState = {
         standardPrices = [1,1,2,2,3,3,4,5,7,10,15, 'x'];
         //  A simple background for our game
         game.add.sprite(0, 0, 'background');
+        // adding a background for the store
+        let storeBackground = game.add.sprite(game.world.width/2, 0, 'storeBackground');
+        storeBackground.anchor.setTo(0.5, 0);
 
         this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
@@ -15,8 +18,8 @@ var shopState = {
         updateLevelText();
     	levelText.anchor.setTo(0,0);
 
-        shopText = game.add.text(600, 0, 'Shop', { fontSize : '50px', fill: '#F0F0F0'});
-    	shopText.anchor.setTo(.25,0);
+        shopText = game.add.text(game.world.width/2, 0, 'Upgrade Shop', { fontSize : '50px', fill: '#F0F0F0'});
+    	shopText.anchor.setTo(0.5,0);
 
         currencyText = game.add.text(55, 10, '', { fontSize : '20px', fill: '#F0F0F0'});
         var currencyPic = game.add.sprite(8, 60, 'coin');
@@ -26,11 +29,11 @@ var shopState = {
         let leaveText = game.add.text(game.world.width/2, game.world.height - 100, 'Hit Space to Continue!', { fontSize : '30px', fill: '#F0F0F0'});
     	leaveText.anchor.setTo(0.5, 0.5);
 
-        fireRateText = createButton(450, 60, 'Fire Rate\nUpgrade', this.buyFireRate, 'button');
-        fireSpeedText = createButton(550, 60, 'Projectile\n  Speed', this.buyFireSpeed, 'button');
-        playerSpeedText = createButton(650, 60, 'Player\nSpeed', this.buyPlayerSpeed, 'button');
+        fireRateText = createButton(game.world.width/2 - 150, 90, 'Fire Rate\nUpgrade', this.buyFireRate, 'button');
+        fireSpeedText = createButton(game.world.width/2 - 50, 90, 'Projectile\n  Speed', this.buyFireSpeed, 'button');
+        playerSpeedText = createButton(game.world.width/2 + 50, 90, 'Player\nSpeed', this.buyPlayerSpeed, 'button');
         //if(!weapon.isMax()) {
-            weaponUpgradeText = createButton(750, 60, 'Weapon\nUpgrade', this.buyWeaponUpgrade, 'button');
+            weaponUpgradeText = createButton(game.world.width/2 + 150, 90, 'Weapon\nUpgrade', this.buyWeaponUpgrade, 'button');
         //}
 
         fireRateLevelText = createUpgradeText(10, 120, 'Fire Rate');

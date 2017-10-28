@@ -33,11 +33,8 @@ var playState = {
             coin.body.offset.setTo(-7,-7);
         });
 
-
-
         //Enabling Player
         player.setup();
-
 
         //Enabling Weapon
         weapon.setup();
@@ -47,8 +44,6 @@ var playState = {
         baddies.papis.setAll('body.bounce.x', 1);
         baddies.papis.setAll('body.bounce.y', 1);
         baddies.papis.setAll('body.collideWorldBounds', true);
-
-
 
         //Controls for the player
         this.wasd = {
@@ -145,11 +140,24 @@ function hitBaddie(shot, baddie) {
         baddie.kill();
         level.killCount++;
         console.log('killed: ' + level.killCount +  '/' + level.getEnemyCount() + ' enemies');
+        spawnCoin(baddie);
+
+
     } else {
         baddie.hitsLeft--;
     }
     playHit();
-	spawnCoin(baddie);
+
+    //Particles for hitting an enemy
+    var emitter = game.add.emitter(shot.x, shot.y , 50);
+    emitter.makeParticles('hitParticle');
+    emitter.setAlpha(.3, .5);
+    emitter.gravity = -50;
+    emitter.minParticleScale = 0.1;
+    emitter.maxParticleScale = 0.1;
+    emitter.flow(100, 1, 2, 5);
+
+
 }
 
 function killPlayer(guy, enemy) {

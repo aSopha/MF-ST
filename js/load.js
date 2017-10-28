@@ -2,6 +2,7 @@ var loadState = {
 
     preload: function() {
         game.load.image('background', 'assets/ghostBackground.png');
+        game.load.image('storeBackground', 'assets/storeBackground.png');
         game.load.image('player', 'assets/player.png');
         game.load.image('ball', 'assets/ball.png');
         game.load.image('papiShot', 'assets/papiball.png');
@@ -13,6 +14,7 @@ var loadState = {
         game.load.image('graybutton', 'assets/graybutton.png');
         game.load.image('coinParticle', 'assets/coinParticle.png');
         game.load.image('deathParticle', 'assets/bluespark.png');
+        game.load.image('hitParticle', 'assets/hitParticle.png');
 
         game.load.spritesheet('fail', 'assets/omgfail.png', 276, 225);
         game.load.spritesheet('yeahOk', 'assets/jlaw-okay.png', 245, 285);
