@@ -30,7 +30,10 @@ var loadState = {
         game.load.image('sfxOn', 'assets/audioOn.png');
         game.load.image('sfxOff', 'assets/audioOff.png');
 
-        game.load.audio('meow', 'assets/audio/meowing.wav');
+        game.load.audio('meow0', 'assets/audio/meowing.wav');
+        game.load.audio('meow1', 'assets/audio/meowing1.wav');
+        game.load.audio('meow2', 'assets/audio/meowing2.wav');
+        game.load.audio('meow3', 'assets/audio/meowing3.wav');
         game.load.audio('upgrade', 'assets/audio/armorUp.wav');
         game.load.audio('error', 'assets/audio/errorSound.wav');
         game.load.audio('shot1', 'assets/audio/shot.wav');

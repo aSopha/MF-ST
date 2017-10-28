@@ -21,7 +21,6 @@ let player = new Player();
 let weapon = new Weapon();
 let baddies = new Baddies();
 
-let pickUpSound;
 let music;
 let musicMuted = false;
 let sfxMuted = false;
@@ -107,5 +106,16 @@ function playHit() {
 		let hitSound = game.add.audio('hitSound');
 		hitSound.volume = .3;
 		hitSound.play();
+	}
+}
+
+function playMeow() {
+	let meows = ['meow0','meow1' ,'meow2' ,'meow3'];
+	if(!sfxMuted) {
+		rand = game.rnd.integerInRange(0,3);
+		console.log(rand);
+		let pickUpSound = game.add.audio(meows[rand]);
+		pickUpSound.volume = 2;
+		pickUpSound.play();
 	}
 }

@@ -53,7 +53,7 @@ var playState = {
       	     right: game.input.keyboard.addKey(Phaser.Keyboard.D),
     	}
 
-        pickUpSound = game.add.audio('meow');
+
     },
 
     update: function() {
@@ -179,9 +179,8 @@ function pickUp(guy, coin) {
 	coin.kill();
 	player.currency += 1;
 	currencyText.text = ': ' + player.currency;
-    if(!sfxMuted) {
-        pickUpSound.play();
-    }
+    playMeow();
+
 }
 
 
