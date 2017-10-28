@@ -46,14 +46,14 @@ class Level {
         for(let i = 0; i < this.enemyCount.length; i++) {
             let temp = []
             for(let j = 0; j < this.enemyCount[i].length; j++) {
-                console.log('pushing : ' + this.enemyCount[i][j]);
+                //console.log('pushing : ' + this.enemyCount[i][j]);
                 temp.push(this.enemyCount[i][j]);
             }
             result.push(temp);
         }
 
         for(let i = 0; i < this.enemyCount.length; i++) {
-            console.log('inside is : ' + result[i]);
+            //console.log('inside is : ' + result[i]);
         }
         return result;
     }

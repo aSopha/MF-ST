@@ -105,6 +105,8 @@ class Baddies {
                 		return;
                 	}
                     baddie.revive();
+                    baddie.hitsLeft = i;
+                    console.log(baddie.hitsLeft);
                 	let location = this.chooseLocation();
 
                     baddie.body.velocity.x = game.rnd.integerInRange(-100, 100);

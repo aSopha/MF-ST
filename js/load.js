@@ -28,7 +28,9 @@ var loadState = {
 
         game.load.audio('meow', 'assets/audio/meowing.wav');
         game.load.audio('upgrade', 'assets/audio/armorUp.wav');
+        game.load.audio('error', 'assets/audio/errorSound.wav');
         game.load.audio('shot1', 'assets/audio/shot.wav');
+        game.load.audio('hitSound', 'assets/audio/hitSound.wav');
 
         game.load.audio('music', 'assets/audio/menu.mp3');
     },

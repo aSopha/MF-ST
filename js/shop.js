@@ -70,6 +70,8 @@ var shopState = {
             playUpgradeSound();
             updateText(fireRateText, standardPrices[upgradeLevel]);
             updateText(fireRateLevelText, weapon.getFireRateLevel());
+        } else {
+            playError();
         }
     },
 
@@ -83,6 +85,8 @@ var shopState = {
             playUpgradeSound();
             updateText(fireSpeedText, standardPrices[upgradeLevel]);
             updateText(fireSpeedLevelText, weapon.getFireSpeedLevel());
+        } else {
+            playError();
         }
     },
 
@@ -97,6 +101,8 @@ var shopState = {
             playUpgradeSound();
             updateText(playerSpeedText, standardPrices[upgradeLevel]);
             updateText(playerSpeedLevelText, player.getSpeedLevel());
+        } else {
+            playError();
         }
     },
 
@@ -108,6 +114,8 @@ var shopState = {
             playUpgradeSound();
             updateText(weaponUpgradeText, weaponTypePrices[upgradeLevel]);
             updateText(weaponTypeText, weapon.getWeaponTypeName());
+        } else {
+            playError();
         }
     }
 }

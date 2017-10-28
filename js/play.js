@@ -140,11 +140,15 @@ var playState = {
 }
 
 function hitBaddie(shot, baddie) {
-
-	level.killCount++;
-    console.log('killed: ' + level.killCount +  '/' + level.getEnemyCount() + ' enemies');
     shot.kill();
-    baddie.kill();
+    if(baddie.hitsLeft == 0) {
+        baddie.kill();
+        level.killCount++;
+        console.log('killed: ' + level.killCount +  '/' + level.getEnemyCount() + ' enemies');
+    } else {
+        baddie.hitsLeft--;
+    }
+    playHit();
 	spawnCoin(baddie);
 }
 

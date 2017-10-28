@@ -1,5 +1,6 @@
 let game = new Phaser.Game(1200, 600, Phaser.AUTO, 'my-game', { preload: preload, create: create, update: update });
 
+//Adding all of the different Game States
 game.state.add('boot', bootState);
 game.state.add('load', loadState);
 game.state.add('menu', menuState);
@@ -8,6 +9,7 @@ game.state.add('shop', shopState);
 game.state.add('gameOver', overState);
 game.state.add('win', winState);
 
+//Starting the boot game state
 game.state.start('boot');
 
 //let currency = 0;
@@ -40,17 +42,14 @@ let fireRateLevelText;
 let fireSpeedLevelText;
 let playerSpeedLevelText;
 let weaponTypeText;
-function preload() {
 
+function preload() {
 }
 
 function create() {
-
-
 }
 
 function update() {
-
 }
 
 function updateCurrency() {
@@ -91,7 +90,18 @@ function playShot1() {
 	}
 }
 
+function playError() {
+	if(!sfxMuted) {
+		let errorSound = game.add.audio('error');
+		errorSound.volume = .5;
+		errorSound.play();
+	}
+}
 
-/*
-
-*/
+function playHit() {
+	if(!sfxMuted) {
+		let hitSound = game.add.audio('hitSound');
+		hitSound.volume = .3;
+		hitSound.play();
+	}
+}
