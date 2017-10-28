@@ -15,8 +15,8 @@ var shopState = {
         updateLevelText();
     	levelText.anchor.setTo(0,0);
 
-        shopText = game.add.text(300, 0, 'Shop', { fontSize : '50px', fill: '#F0F0F0'});
-    	levelText.anchor.setTo(0,0);
+        shopText = game.add.text(700, 0, 'Shop', { fontSize : '50px', fill: '#F0F0F0'});
+    	shopText.anchor.setTo(.25,0);
 
         currencyText = game.add.text(55, 10, '', { fontSize : '20px', fill: '#F0F0F0'});
         var currencyPic = game.add.sprite(8, 60, 'coin');
@@ -26,11 +26,11 @@ var shopState = {
         let leaveText = game.add.text(game.world.width/2, game.world.height - 100, 'Hit Space to Continue!', { fontSize : '30px', fill: '#F0F0F0'});
     	leaveText.anchor.setTo(0.5, 0.5);
 
-        fireRateText = createButton(550, 8, 'Fire Rate\nUpgrade', this.buyFireRate, 'button');
-        fireSpeedText = createButton(650, 8, 'Projectile\n  Speed', this.buyFireSpeed, 'button');
-        playerSpeedText = createButton(750, 8, 'Player\nSpeed', this.buyPlayerSpeed, 'button');
+        fireRateText = createButton(550, 60, 'Fire Rate\nUpgrade', this.buyFireRate, 'button');
+        fireSpeedText = createButton(650, 60, 'Projectile\n  Speed', this.buyFireSpeed, 'button');
+        playerSpeedText = createButton(750, 60, 'Player\nSpeed', this.buyPlayerSpeed, 'button');
         //if(!weapon.isMax()) {
-            weaponUpgradeText = createButton(850, 8, 'Weapon\nUpgrade', this.buyWeaponUpgrade, 'button');
+            weaponUpgradeText = createButton(850, 60, 'Weapon\nUpgrade', this.buyWeaponUpgrade, 'button');
         //}
 
         fireRateLevelText = createUpgradeText(10, 120, 'Fire Rate');

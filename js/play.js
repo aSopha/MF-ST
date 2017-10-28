@@ -71,7 +71,7 @@ var playState = {
         if(level.killCount == level.getEnemyCount()) {
 
             game.time.events.add(1000, this.shop, this);
-        //    this.shop();
+            //this.shop();
             level.nextLevel();
             updateLevelText();
 
@@ -93,7 +93,7 @@ var playState = {
         baddies.miias.forEach(function (baddie) {
             game.physics.arcade.moveToObject(baddie, player.player, 125)
         });
-        //this.shop();
+        this.shop();
         player.stop();
 
         baddies.spawnBaddie(level.currentLevel);
