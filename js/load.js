@@ -27,6 +27,7 @@ var loadState = {
         game.load.image('sfxOff', 'assets/audioOff.png');
 
         game.load.audio('meow', 'assets/audio/meowing.wav');
+        game.load.audio('upgrade', 'assets/audio/armorUp.wav');
         game.load.audio('music', 'assets/audio/menu.mp3');
     },
 

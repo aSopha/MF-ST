@@ -5,7 +5,7 @@ var shopState = {
         //Weapon upgrade Prices
         weaponTypePrices = [5,10,'x'];
         //Store Prices
-        standardPrices = [1,1,2,2,3,4,5,6,7,10,25, 'x'];
+        standardPrices = [1,1,2,2,3,3,4,5,7,10,15, 'x'];
         //  A simple background for our game
         game.add.sprite(0, 0, 'background');
 
@@ -67,6 +67,7 @@ var shopState = {
         }
         if(player.spendCurrency(standardPrices[upgradeLevel++])) {
             weapon.setFireRate(weapon.getFireRateLevel()+1);
+            playUpgradeSound();
             updateText(fireRateText, standardPrices[upgradeLevel]);
             updateText(fireRateLevelText, weapon.getFireRateLevel());
         }
@@ -79,6 +80,7 @@ var shopState = {
         }
         if(player.spendCurrency(standardPrices[upgradeLevel++])) {
             weapon.setFireSpeed(weapon.getFireSpeedLevel()+ 1);
+            playUpgradeSound();
             updateText(fireSpeedText, standardPrices[upgradeLevel]);
             updateText(fireSpeedLevelText, weapon.getFireSpeedLevel());
         }
@@ -92,6 +94,7 @@ var shopState = {
         }
         if(player.spendCurrency(standardPrices[upgradeLevel++])) {
             player.setSpeed(player.getSpeedLevel() + 1);
+            playUpgradeSound();
             updateText(playerSpeedText, standardPrices[upgradeLevel]);
             updateText(playerSpeedLevelText, player.getSpeedLevel());
         }
@@ -102,6 +105,7 @@ var shopState = {
         if(!weapon.isMax() && player.spendCurrency(weaponTypePrices[upgradeLevel++])) {
             if(!weapon.upgradeWeapon()) {
             }
+            playUpgradeSound();
             updateText(weaponUpgradeText, weaponTypePrices[upgradeLevel]);
             updateText(weaponTypeText, weapon.getWeaponTypeName());
         }

@@ -73,7 +73,12 @@ function createButton(x, y, name, functionCalled, picture) {
 	price.addChild(currencyIcon);
 	return price;
 
+}
 
+function playUpgradeSound() {
+	let upgradeSound = game.add.audio('upgrade');
+	upgradeSound.volume = .5
+	upgradeSound.play();
 }
 
 
