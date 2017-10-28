@@ -93,7 +93,7 @@ var playState = {
         baddies.miias.forEach(function (baddie) {
             game.physics.arcade.moveToObject(baddie, player.player, 125)
         });
-        this.shop();
+        //this.shop();
         player.stop();
 
         baddies.spawnBaddie(level.currentLevel);

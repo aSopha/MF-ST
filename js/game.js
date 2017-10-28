@@ -83,6 +83,14 @@ function playUpgradeSound() {
 	}
 }
 
+function playShot1() {
+	if(!sfxMuted) {
+		let shotSound = game.add.audio('shot1');
+		shotSound.volume = .5;
+		shotSound.play();
+	}
+}
+
 
 /*
 

@@ -1,7 +1,7 @@
 var loadState = {
 
     preload: function() {
-        game.load.image('background', 'assets/ghostBackground.jpg');
+        game.load.image('background', 'assets/ghostBackground.png');
         game.load.image('player', 'assets/player.png');
         game.load.image('ball', 'assets/ball.png');
         game.load.image('papiShot', 'assets/papiball.png');
@@ -28,6 +28,8 @@ var loadState = {
 
         game.load.audio('meow', 'assets/audio/meowing.wav');
         game.load.audio('upgrade', 'assets/audio/armorUp.wav');
+        game.load.audio('shot1', 'assets/audio/shot.wav');
+
         game.load.audio('music', 'assets/audio/menu.mp3');
     },
 
@@ -41,7 +43,7 @@ var loadState = {
         if(musicMuted) {
             music.volume = 0;
         } else {
-            music.volume = .3;
+            music.volume = .25;
         }
         game.state.start('menu');
     }

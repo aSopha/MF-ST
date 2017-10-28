@@ -56,6 +56,7 @@ class Weapon {
         }
         if (game.time.now > this.nextFire)
         {
+            playShot1();
             this.nextFire = game.time.now + this.fireRate[this.fireRateLevel];
             if(this.weaponType == 0) {
                 this.fireSingleShot(player, offset);
