@@ -15,6 +15,7 @@ game.state.start('boot');
 //let currency = 0;
 let currencyText;
 let levelText;
+let hpText;
 
 let level = new Level();
 let player = new Player();

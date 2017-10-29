@@ -16,6 +16,11 @@ var shopState = {
         updateLevelText();
     	levelText.anchor.setTo(0,0);
 
+        //Text showing how much hp the player has left
+        hpText = game.add.text(game.world.width - 150, 0, 'HP: ', { fontSize : '50px', fill: '#F0F0F0'});
+    	levelText.anchor.setTo(0,0);
+        updateHPText();
+
         shopText = game.add.text(game.world.width/2, 5, 'Upgrade Shop', { fontSize : '50px', fill: '#F0F0F0'});
     	shopText.anchor.setTo(0.5,0);
 

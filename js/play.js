@@ -17,6 +17,11 @@ var playState = {
     	levelText.anchor.setTo(0,0);
         updateLevelText();
 
+        //Text showing how much hp the player has left
+        hpText = game.add.text(game.world.width - 150, 0, 'HP: ', { fontSize : '50px', fill: '#F0F0F0'});
+    	levelText.anchor.setTo(0,0);
+        updateHPText();
+
         //Text showing how much curreny the player has
         currencyText = game.add.text(55, 10, ': 0', { fontSize : '20px', fill: '#F0F0F0'});
     	var currencyPic = game.add.sprite(8, 60, 'coin');
@@ -92,7 +97,7 @@ var playState = {
         baddies.miias.forEach(function (baddie) {
             game.physics.arcade.moveToObject(baddie, player.player, 125)
         });
-        this.shop();
+        //this.shop();
         player.stop();
 
         baddies.spawnBaddie(level.currentLevel);
@@ -190,6 +195,7 @@ function shotPlayer(guy, enemy) {
 
         game.time.events.add(1000, gameOver, this);
     }
+    updateHPText();
 }
 
 function collisionPlayer(guy, enemy) {
@@ -219,6 +225,7 @@ function collisionPlayer(guy, enemy) {
 
         game.time.events.add(1000, gameOver, this);
     }
+    updateHPText();
 }
 
 function pickUp(guy, coin) {
@@ -252,4 +259,8 @@ function updateLevelText() {
 
 function gameOver() {
     game.state.start('gameOver');
+}
+
+function updateHPText() {
+    hpText.text = 'HP: ' + player.health;
 }
