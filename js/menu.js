@@ -9,12 +9,18 @@ var menuState = {
         //  A simple background for the game
         game.add.sprite(0, 0, 'background');
 
-        let nameLabel = game.add.text(game.world.width/2, 80, 'Game Title',
+        let MoveLabel = game.add.text(game.world.width/2, 70, 'Move Fast',
             { fontSize : '50px', fill: '#F0F0F0'});
-        nameLabel.anchor.setTo(0.5, 0.5);
+        MoveLabel.anchor.setTo(0.5, 0.5);
+        let andLabel = game.add.text(game.world.width/2, 120, '&',
+            { fontSize : '50px', fill: '#F0F0F0'});
+        andLabel.anchor.setTo(0.5, 0.5);
+        let ShootLabel = game.add.text(game.world.width/2, 170, 'Shoot Things',
+            { fontSize : '50px', fill: '#F0F0F0'});
+        ShootLabel.anchor.setTo(0.5, 0.5);
 
-        let startLabel = game.add.text(game.world.width/2, 160, 'Press Enter to start' ,
-            { fontSize : '50px', fill: '#F0F0F0'});
+        let startLabel = game.add.text(game.world.width/2, game.world.height-100, 'Press Enter to start' ,
+            { fontSize : '30px', fill: '#F0F0F0'});
         startLabel.anchor.setTo(0.5, 0.5);
 
         var enterkey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
