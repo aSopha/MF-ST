@@ -72,8 +72,11 @@ var playState = {
 
         if(level.killCount == level.getEnemyCount()) {
 
-            game.time.events.add(1000, this.shop, this);
-            //this.shop();
+            //Only go to shop if the game isnt won
+            if(level.currentLevel < level.levelCount -1) {
+                game.time.events.add(1000, this.shop, this);
+            }
+
             level.nextLevel();
             updateLevelText();
 

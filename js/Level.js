@@ -58,13 +58,12 @@ class Level {
         return result;
     }
     nextLevel() {
-        this.currentLevel++;
-        console.log(this.currentLevel);
-        console.log(this.levelCount);
-        if(this.currentLevel >= this.levelCount) {
+        if(this.currentLevel >= (this.levelCount - 1)) {
             console.log('win');
-            game.state.start('win');
+            game.time.events.add(1000, this.gotoWin, this);
+            //game.state.start('win');
         } else {
+            this.currentLevel++;
             this.enemiesRemaining = this.getEnemyCount();
             this.killCount = 0;
             this.over = true;
@@ -89,5 +88,7 @@ class Level {
         this.over = false;
     }
 
-
+    gotoWin() {
+        game.state.start('win');
+    }
 }

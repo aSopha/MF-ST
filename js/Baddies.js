@@ -14,7 +14,6 @@ class Baddies {
 
         this.spawnRates = [this.miiaSpawnRate , this.papiSpawnRate];
         this.nextSpawns = [this.nextMiiaSpawn , this.nextPapiSpawn];
-
     }
 
     setupMiias() {
