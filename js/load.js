@@ -1,6 +1,10 @@
 var loadState = {
 
     preload: function() {
+
+        let loadText = game.add.text(game.world.width/2, 100, 'LOADING', { fontSize : '50px', fill: '#F0F0F0'});
+    	loadText.anchor.setTo(0.5, 0.5);
+        
         game.load.image('background', 'assets/ghostBackground.png');
         game.load.image('storeBackground', 'assets/storeBackground.png');
         game.load.image('player', 'assets/player.png');
@@ -56,8 +60,7 @@ var loadState = {
     create: function() {
         music = game.add.audio('music');
 
-        let loadText = game.add.text(game.world.width/2, 100, 'LOADING', { fontSize : '50px', fill: '#F0F0F0'});
-    	loadText.anchor.setTo(0.5, 0.5);
+
 
         //Disable Right click
         game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
