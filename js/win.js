@@ -5,7 +5,7 @@ var winState = {
         let winText = game.add.text(game.world.width/2, 100, 'You win!', { fontSize : '50px', fill: '#F0F0F0'});
     	winText.anchor.setTo(0.5, 0.5);
 
-        let restartLabel = game.add.text(game.world.width/2, 160, 'Press Enter to restart' ,
+        let restartLabel = game.add.text(game.world.width/2, game.world.height - 100, 'Press Enter to restart' ,
             { fontSize : '50px', fill: '#F0F0F0'});
         restartLabel.anchor.setTo(0.5, 0.5);
 
@@ -16,8 +16,6 @@ var winState = {
 
     restart: function() {
         game.state.start('menu');
-        level.reset();
-        weapon.reset();
-        player.reset();
+        resetEverything();
     }
 }

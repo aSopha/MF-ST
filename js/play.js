@@ -2,6 +2,10 @@ var playState = {
 
     create: function() {
 
+        if(postMenu) {
+            playGameMusic();
+            postMenu = false;
+        }
         console.log('level: ' + level.currentLevel);
         console.log('enemies this level: ' + level.enemyCount[level.currentLevel][0]);
 
@@ -79,8 +83,8 @@ var playState = {
         game.physics.arcade.collide(baddies.papis);
 
 
-        game.physics.arcade.overlap(player.player, baddies.miias, killPlayer, null, this);
-        game.physics.arcade.overlap(player.player, baddies.papiShots, killPlayer, null, this);
+        game.physics.arcade.overlap(player.player, baddies.miias, collisionPlayer, null, this);
+        game.physics.arcade.overlap(player.player, baddies.papiShots, shotPlayer, null, this);
         game.physics.arcade.overlap(weapon.shots, baddies.miias, hitBaddie, null, this);
         game.physics.arcade.overlap(weapon.shots, baddies.papis, hitBaddie, null, this);
         game.physics.arcade.overlap(player.player, coins, pickUp, null, this);
@@ -88,7 +92,7 @@ var playState = {
         baddies.miias.forEach(function (baddie) {
             game.physics.arcade.moveToObject(baddie, player.player, 125)
         });
-        //this.shop();
+        this.shop();
         player.stop();
 
         baddies.spawnBaddie(level.currentLevel);
@@ -160,19 +164,61 @@ function hitBaddie(shot, baddie) {
 
 }
 
-function killPlayer(guy, enemy) {
-    player.killPlayer();
+function shotPlayer(guy, enemy) {
+    playDamage();
     enemy.kill();
 
-    var emitter = game.add.emitter(guy.x + 10, guy.y , 50);
-    emitter.makeParticles('deathParticle');
+    //Particles for hitting an enemy
+    var emitter = game.add.emitter(enemy.x, enemy.y , 50);
+    emitter.makeParticles('damageParticle');
     emitter.setAlpha(.5, .8);
     emitter.gravity = -50;
     emitter.minParticleScale = 0.1;
-    emitter.maxParticleScale = 0.5;
-    emitter.flow(1000, 1, 3, 25);
+    emitter.maxParticleScale = 0.1;
+    emitter.flow(100, 1, 2, 5);
 
-    game.time.events.add(1000, gameOver, this);
+    //If remaining player HP is zero or less. Kill the player and end the game
+    if(player.takeDamage(1) <= 0) {
+        player.killPlayer();
+        var emitter = game.add.emitter(guy.x + 10, guy.y , 50);
+        emitter.makeParticles('deathParticle');
+        emitter.setAlpha(.5, .8);
+        emitter.gravity = -50;
+        emitter.minParticleScale = 0.1;
+        emitter.maxParticleScale = 0.5;
+        emitter.flow(1000, 1, 3, 25);
+
+        game.time.events.add(1000, gameOver, this);
+    }
+}
+
+function collisionPlayer(guy, enemy) {
+    playDamage();
+    enemy.kill();
+    level.killCount++;
+    console.log('killed: ' + level.killCount +  '/' + level.getEnemyCount() + ' enemies');
+    //Particles for hitting an enemy
+    var emitter = game.add.emitter(enemy.x, enemy.y , 50);
+    emitter.makeParticles('damageParticle');
+    emitter.setAlpha(.5, .8);
+    emitter.gravity = -50;
+    emitter.minParticleScale = 0.1;
+    emitter.maxParticleScale = 0.1;
+    emitter.flow(100, 1, 2, 5);
+
+    //If remaining player HP is zero or less. Kill the player and end the game
+    if(player.takeDamage(1) <= 0) {
+        player.killPlayer();
+        var emitter = game.add.emitter(guy.x + 10, guy.y , 50);
+        emitter.makeParticles('deathParticle');
+        emitter.setAlpha(.5, .8);
+        emitter.gravity = -50;
+        emitter.minParticleScale = 0.1;
+        emitter.maxParticleScale = 0.5;
+        emitter.flow(1000, 1, 3, 25);
+
+        game.time.events.add(1000, gameOver, this);
+    }
 }
 
 function pickUp(guy, coin) {

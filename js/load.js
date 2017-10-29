@@ -16,6 +16,7 @@ var loadState = {
         game.load.image('coinParticle', 'assets/coinParticle.png');
         game.load.image('deathParticle', 'assets/bluespark.png');
         game.load.image('hitParticle', 'assets/hitParticle.png');
+        game.load.image('damageParticle', 'assets/redspark.png');
 
         game.load.spritesheet('fail', 'assets/omgfail.png', 276, 225);
         game.load.spritesheet('yeahOk', 'assets/jlaw-okay.png', 245, 285);
@@ -38,8 +39,10 @@ var loadState = {
         game.load.audio('error', 'assets/audio/errorSound.wav');
         game.load.audio('shot1', 'assets/audio/shot.wav');
         game.load.audio('hitSound', 'assets/audio/hitSound.wav');
+        game.load.audio('playerDamage', 'assets/audio/playerDamage.wav');
 
         game.load.audio('music', 'assets/audio/menu.mp3');
+        game.load.audio('playMusic', 'assets/audio/playMusic.mp3');
     },
 
     create: function() {
@@ -48,12 +51,7 @@ var loadState = {
         //Disable Right click
         game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
 
-        music.loopFull();
-        if(musicMuted) {
-            music.volume = 0;
-        } else {
-            music.volume = .25;
-        }
+
         game.state.start('menu');
     }
 }

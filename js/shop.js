@@ -3,7 +3,7 @@ var shopState = {
         //Weapon upgrade Prices
         weaponTypePrices = [5,10,'x'];
         //Store Prices
-        standardPrices = [1,1,2,2,3,3,4,5,7,10,15, 'x'];
+        standardPrices = [1,1,1,2,2,3,4,5,7,10,15, 'x'];
         //  A simple background for our game
         game.add.sprite(0, 0, 'background');
         // adding a background for the store
@@ -27,15 +27,15 @@ var shopState = {
         let leaveText = game.add.text(game.world.width/2, game.world.height - 100, 'Hit Space to Continue!', { fontSize : '30px', fill: '#F0F0F0'});
     	leaveText.anchor.setTo(0.5, 0.5);
 
-        fireRateText = createButton(game.world.width/2 - 150, 90, 'Fire Rate\nUpgrade', this.buyFireRate, 'buttonsprites');
+        fireRateText = createButton(game.world.width/2 - 150, 90, 'Fire\nRate', this.buyFireRate, 'buttonsprites');
         fireSpeedText = createButton(game.world.width/2 - 50, 90, 'Projectile\n  Speed', this.buyFireSpeed, 'buttonsprites');
         playerSpeedText = createButton(game.world.width/2 + 50, 90, 'Player\nSpeed', this.buyPlayerSpeed, 'buttonsprites');
         //if(!weapon.isMax()) {
-            weaponUpgradeText = createButton(game.world.width/2 + 150, 90, 'Weapon\nUpgrade', this.buyWeaponUpgrade, 'buttonsprites');
+            weaponUpgradeText = createButton(game.world.width/2 + 150, 90, 'Weapon\n  Type', this.buyWeaponUpgrade, 'buttonsprites');
         //}
 
         fireRateLevelText = createUpgradeText(10, 120, 'Fire Rate');
-        fireSpeedLevelText = createUpgradeText(10, 150, 'Fire Speed');
+        fireSpeedLevelText = createUpgradeText(10, 150, 'Projectile Speed');
         playerSpeedLevelText = createUpgradeText(10, 180, 'Player Speed');
         weaponTypeText = createUpgradeText(10, 210, 'Weapon Type');
 
@@ -127,6 +127,6 @@ function updateText(priceText, text) {
 
 function createUpgradeText(x,y, text) {
     let upgradeText = game.add.text(x, y, text + ': ', { fontSize : '20px', fill: '#F0F0F0'});
-    let upgradeLevel = game.add.text(170, y, '0', { fontSize : '20px', fill: '#F0F0F0'});
+    let upgradeLevel = game.add.text(200, y, '0', { fontSize : '20px', fill: '#F0F0F0'});
     return upgradeLevel;
 }

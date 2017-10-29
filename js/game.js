@@ -21,7 +21,10 @@ let player = new Player();
 let weapon = new Weapon();
 let baddies = new Baddies();
 
+let postMenu = true;
+
 let music;
+let gameMusic;
 let musicMuted = false;
 let sfxMuted = false;
 let sfxButton;
@@ -65,12 +68,12 @@ function createButton(x, y, name, functionCalled, picture) {
     let text = game.add.text(-38, 6,  name, { fontSize : '15px', fill: '#F0F0F0'});
     text.x += (button.width / 2) - (text.width / 2);
 
-	let price = game.add.text(-20, 55,  '  ', { fontSize : '15px', fill: '#F0F0F0'});
+	let price = game.add.text(x-20, y+57,  '  ', { fontSize : '15px', fill: '#F0F0F0'});
     price.x += (button.width / 2) - (price.width / 2);
 	price.anchor.setTo(0.5, 0);
 
 	let currencyIcon = game.add.sprite(-30, -1, 'drop');
-	button.addChild(price);
+	//button.addChild(price);
 	button.addChild(text);
 	price.addChild(currencyIcon);
 	return price;
@@ -109,13 +112,37 @@ function playHit() {
 	}
 }
 
+function playDamage() {
+	if(!sfxMuted) {
+		let damageSound = game.add.audio('playerDamage');
+		damageSound.volume = .5;
+		damageSound.play();
+	}
+}
+
 function playMeow() {
 	let meows = ['meow0','meow1' ,'meow2' ,'meow3'];
 	if(!sfxMuted) {
 		rand = game.rnd.integerInRange(0,3);
 		console.log(rand);
 		let pickUpSound = game.add.audio(meows[rand]);
-		pickUpSound.volume = 2;
+		pickUpSound.volume = 3;
 		pickUpSound.play();
 	}
+}
+
+function playGameMusic() {
+	if(!musicMuted) {
+		gameMusic = game.add.audio('playMusic');
+		gameMusic.volume = .25;
+		gameMusic.loopFull();
+	}
+}
+
+function resetEverything() {
+	postMenu = true;
+	gameMusic.stop();
+	level.reset();
+	weapon.reset();
+	player.reset();
 }

@@ -3,6 +3,12 @@ var menuState = {
     create: function() {
 
 
+        music.loopFull();
+        if(musicMuted) {
+            music.volume = 0;
+        } else {
+            music.volume = .25;
+        }
 
         console.log('yeahh');
 
@@ -35,6 +41,7 @@ var menuState = {
 
     start: function() {
         game.state.start('play');
+        music.stop();
     }
 
 

@@ -5,6 +5,7 @@ class Player {
         this.speedLevel = 0;
         this.maxSpeedLevel = this.speed.length -1;
         this.currency = 0;
+        this.health = 5;
         this.dead = false;
     }
 
@@ -13,6 +14,7 @@ class Player {
         this.dead = true;
     }
     reset() {
+        this.health = 5;
         this.speedLevel = 0;
         this.currency = 0;
         this.dead = false;
@@ -43,6 +45,12 @@ class Player {
 
     setSpeed(newSpeed) {
         this.speedLevel = newSpeed;
+    }
+    //Function takes in a number and subtracts it from players hp
+    //Returns the remaining hp
+    takeDamage(damage) {
+        this.health -= damage;
+        return this.health;
     }
 
     //Move Up

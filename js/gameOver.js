@@ -25,9 +25,7 @@ var overState = {
 
     restart: function() {
         game.state.start('menu');
-        level.reset();
-        weapon.reset();
-        player.reset();
+        resetEverything();
     }
 }
 
