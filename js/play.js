@@ -67,9 +67,7 @@ var playState = {
 
     update: function() {
 
-
-        //game.debug.bodyInfo(player.player, 32, 32);
-        //game.debug.body(player.player);
+        player.updateEmitterPosition();
         //game.debug.spriteCorners(player.player, true, true);
 
         if(level.killCount == level.getEnemyCount()) {
@@ -262,5 +260,14 @@ function gameOver() {
 }
 
 function updateHPText() {
+    if(player.health <= 1) {
+        hpText.setStyle({fontSize : '50px',fill: '#FF0000'});
+    } else if(player.health == 2) {
+        hpText.setStyle({fontSize : '50px',fill: '#ff6700'});
+    } else if(player.health == 3) {
+        hpText.setStyle({fontSize : '50px',fill: '#ffdb00'});
+    } else {
+        hpText.setStyle({fontSize : '50px',fill: '#F0F0F0'});
+    }
     hpText.text = 'HP: ' + player.health;
 }

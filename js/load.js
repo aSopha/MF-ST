@@ -18,6 +18,12 @@ var loadState = {
         game.load.image('hitParticle', 'assets/hitParticle.png');
         game.load.image('damageParticle', 'assets/redspark.png');
 
+        game.load.image('moveParticle0', 'assets/particles/whitePuff00.png');
+        game.load.image('moveParticle1', 'assets/particles/whitePuff01.png');
+        game.load.image('moveParticle2', 'assets/particles/whitePuff02.png');
+        game.load.image('moveParticle3', 'assets/particles/whitePuff03.png');
+        game.load.image('moveParticle4', 'assets/particles/whitePuff04.png');
+
         game.load.spritesheet('fail', 'assets/omgfail.png', 276, 225);
         game.load.spritesheet('yeahOk', 'assets/jlaw-okay.png', 245, 285);
         game.load.spritesheet('jumprope', 'assets/jumprope.png', 300, 170);
@@ -25,6 +31,8 @@ var loadState = {
         game.load.spritesheet('headshake', 'assets/headshake.png', 200, 113);
         game.load.spritesheet('deerheadbutt', 'assets/deerheadbutt.png', 300, 170);
         game.load.spritesheet('buttonsprites', 'assets/buttonsprites.png', 75, 53);
+        game.load.spritesheet('startButtonSprites', 'assets/startButton.png', 202, 55);
+        game.load.spritesheet('restartButtonSprites', 'assets/restartButton.png', 243, 48);
 
         game.load.image('musicOn', 'assets/musicOn.png');
         game.load.image('musicOff', 'assets/musicOff.png');

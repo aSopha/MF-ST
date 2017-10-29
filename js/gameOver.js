@@ -5,9 +5,11 @@ var overState = {
         let overText = game.add.text(game.world.width/2, 80, 'Game Over Scrub', { fontSize : '50px', fill: '#F0F0F0'});
     	overText.anchor.setTo(0.5, 0.5);
 
-        let restartLabel = game.add.text(game.world.width/2, 160, 'Press Enter to restart' ,
-            { fontSize : '50px', fill: '#F0F0F0'});
-        restartLabel.anchor.setTo(0.5, 0.5);
+
+
+        let restartButton = game.add.button(game.world.width/2, 160, 'restartButtonSprites', this.restart, this,  0, 1 , 2);
+        restartButton.smoothed = false;
+    	restartButton.anchor.setTo(0.5, 0.5);
 
 
         makeAnimation(50,50,'fail', 12);

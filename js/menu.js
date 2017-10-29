@@ -25,10 +25,13 @@ var menuState = {
             { fontSize : '50px', fill: '#F0F0F0'});
         ShootLabel.anchor.setTo(0.5, 0.5);
 
-        let startLabel = game.add.text(game.world.width/2, game.world.height-100, 'Press Enter to start' ,
-            { fontSize : '30px', fill: '#F0F0F0'});
-        startLabel.anchor.setTo(0.5, 0.5);
+        //let startLabel = game.add.text(game.world.width/2, game.world.height-100, 'Press Enter to start' ,
+        //    { fontSize : '30px', fill: '#F0F0F0'});
+        //startLabel.anchor.setTo(0.5, 0.5);
 
+        let startButton = game.add.button(game.world.width/2, game.world.height-200, 'startButtonSprites', this.start, this,  0, 1 , 2);
+        startButton.smoothed = false;
+    	startButton.anchor.setTo(0.5, 0);
         var enterkey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
         enterkey.onDown.addOnce(this.start, this);

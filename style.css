@@ -1,0 +1,6 @@
+body {
+    margin: 0;
+}
+canvas {
+    cursor: url('assets/crosshair.png') 10 10, default;
+}
