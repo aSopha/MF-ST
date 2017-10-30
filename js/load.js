@@ -5,6 +5,8 @@ var loadState = {
         loadText = game.add.text(game.world.width/2, 100, 'LOADING', { fontSize : '50px', fill: '#F0F0F0'});
     	loadText.anchor.setTo(0.5, 0.5);
 
+        game.load.onFileComplete.add(fileComplete, this);
+
         game.load.image('background', 'assets/ghostBackground.png');
         game.load.image('storeBackground', 'assets/storeBackground.png');
         game.load.image('player', 'assets/player.png');
