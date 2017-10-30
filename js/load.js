@@ -2,9 +2,9 @@ var loadState = {
 
     preload: function() {
 
-        let loadText = game.add.text(game.world.width/2, 100, 'LOADING', { fontSize : '50px', fill: '#F0F0F0'});
+        loadText = game.add.text(game.world.width/2, 100, 'LOADING', { fontSize : '50px', fill: '#F0F0F0'});
     	loadText.anchor.setTo(0.5, 0.5);
-        
+
         game.load.image('background', 'assets/ghostBackground.png');
         game.load.image('storeBackground', 'assets/storeBackground.png');
         game.load.image('player', 'assets/player.png');
@@ -68,4 +68,12 @@ var loadState = {
 
         game.state.start('menu');
     }
+}
+
+//	This callback is sent the following parameters:
+function fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {
+
+	loadText.setText("File Complete: " + progress + "% - " + totalLoaded + " out of " + totalFiles);
+
+
 }

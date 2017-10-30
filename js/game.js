@@ -24,6 +24,8 @@ let baddies = new Baddies();
 
 let postMenu = true;
 
+let loadText;
+
 let music;
 let gameMusic;
 let musicMuted = false;
