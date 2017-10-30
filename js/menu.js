@@ -7,7 +7,7 @@ var menuState = {
         if(musicMuted) {
             music.volume = 0;
         } else {
-            music.volume = .25;
+            music.volume = .1;
         }
 
         console.log('yeahh');
