@@ -22,6 +22,7 @@ class Baddies {
         for (var i = 0; i < 25; i++) {
             var miia = this.miias.create(game.world.randomX, game.world.randomY, 'miia');
     		miia.anchor.setTo(0.5,0.5);
+            miia.type = 0;
     		miia.kill();
         }
     }
@@ -34,6 +35,7 @@ class Baddies {
             var papi = this.papis.create(game.world.randomX, game.world.randomY, 'papi');
     		papi.anchor.setTo(0.5,0.5);
     		papi.kill();
+            papi.type = 1;
         }
         this.papiShots = game.add.group();
         this.papiShots.enableBody = true;
@@ -41,7 +43,7 @@ class Baddies {
         this.papiShots.setAll('checkWorldBounds', true);
         this.papiShots.setAll('outOfBoundsKill', true);
     	this.papiShots.tracking = false;
-        this.papiFireRate = 1000;
+        this.papiFireRate = 800;
     }
 
     setupAll() {

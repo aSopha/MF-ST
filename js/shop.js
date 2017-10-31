@@ -12,14 +12,19 @@ var shopState = {
 
         this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-        levelText = game.add.text(8, 0, 'Level: 0', { fontSize : '50px', fill: '#F0F0F0'});
+        levelText = game.add.text(game.world.width - 8, 0, 'Level: 0', { fontSize : '50px', fill: '#F0F0F0'});
+    	levelText.anchor.setTo(1,0);
         updateLevelText();
-    	levelText.anchor.setTo(0,0);
 
         //Text showing how much hp the player has left
-        hpText = game.add.text(game.world.width - 150, 0, 'HP: ', { fontSize : '50px', fill: '#F0F0F0'});
-    	levelText.anchor.setTo(0,0);
+        hpText = game.add.text(game.world.width - 8, 50, 'HP: ', { fontSize : '50px', fill: '#F0F0F0'});
+    	hpText.anchor.setTo(1,0);
         updateHPText();
+
+        //Text showing how much hp the player has left
+        scoreText = game.add.text(8, 0, 'Score: ', { fontSize : '50px', fill: '#F0F0F0'});
+    	scoreText.anchor.setTo(0,0);
+        updateScoreText();
 
         shopText = game.add.text(game.world.width/2, 5, 'Upgrade Shop', { fontSize : '50px', fill: '#F0F0F0'});
     	shopText.anchor.setTo(0.5,0);
@@ -58,7 +63,8 @@ var shopState = {
     },
 
     update: function() {
-
+        decrementScore();
+        updateScoreText();
     },
 
     start: function() {

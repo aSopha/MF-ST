@@ -16,6 +16,8 @@ game.state.start('boot');
 let currencyText;
 let levelText;
 let hpText;
+let scoreText;
+
 
 let level = new Level();
 let player = new Player();
@@ -48,6 +50,10 @@ let fireSpeedLevelText;
 let playerSpeedLevelText;
 let weaponTypeText;
 
+let score = 0;
+let nextDecrement = 0;
+let decrementRate = 300;
+
 function preload() {
 }
 
@@ -55,6 +61,20 @@ function create() {
 }
 
 function update() {
+}
+
+function decrementScore() {
+	if(game.time.now > nextDecrement) {
+		nextDecrement = nextDecrement + decrementRate;
+		if(!level.over) {
+			console.log('uh huh');
+		}
+		score -= 1;
+		if(score < 0) {
+			score = 0;
+		}
+		updateScoreText();
+	}
 }
 
 function updateCurrency() {
@@ -137,13 +157,14 @@ function playMeow() {
 function playGameMusic() {
 	if(!musicMuted) {
 		gameMusic = game.add.audio('playMusic');
-		gameMusic.volume = .25;
+		gameMusic.volume = .15;
 		gameMusic.loopFull();
 	}
 }
 
 function resetEverything() {
 	postMenu = true;
+	score = 0;
 	gameMusic.stop();
 	level.reset();
 	weapon.reset();

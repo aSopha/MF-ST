@@ -51,7 +51,7 @@ var menuState = {
 };
 function toggleMusic() {
     if(musicMuted) {
-        music.volume = .3;
+        music.volume = .1;
         musicMuted = false;
         musicButton.pendingDestroy = true;
         drawMusicButton();

@@ -7,56 +7,59 @@ var loadState = {
 
         game.load.onFileComplete.add(fileComplete, this);
 
-        game.load.image('background', 'assets/ghostBackground.png');
-        game.load.image('storeBackground', 'assets/storeBackground.png');
-        game.load.image('player', 'assets/player.png');
-        game.load.image('ball', 'assets/ball.png');
-        game.load.image('papiShot', 'assets/papiball.png');
-        game.load.image('miia', 'assets/miia4.png');
-        game.load.image('papi', 'assets/papi.png');
-    	game.load.image('coin', 'assets/mistycoin.png');
-    	game.load.image('drop', 'assets/mistycoinDrop.png');
-    	game.load.image('button', 'assets/button.png');
-        game.load.image('onClickButton', 'assets/onClickButton.png');
-        game.load.image('graybutton', 'assets/graybutton.png');
-        game.load.image('coinParticle', 'assets/coinParticle.png');
-        game.load.image('deathParticle', 'assets/bluespark.png');
-        game.load.image('hitParticle', 'assets/hitParticle.png');
-        game.load.image('damageParticle', 'assets/redspark.png');
+        //let filepath = './PhaserGame';
+        let filepath = '';
 
-        game.load.image('moveParticle0', 'assets/particles/whitePuff00.png');
-        game.load.image('moveParticle1', 'assets/particles/whitePuff01.png');
-        game.load.image('moveParticle2', 'assets/particles/whitePuff02.png');
-        game.load.image('moveParticle3', 'assets/particles/whitePuff03.png');
-        game.load.image('moveParticle4', 'assets/particles/whitePuff04.png');
+        game.load.image('background', filepath + 'Assets/ghostBackground.png');
+        game.load.image('storeBackground', filepath + 'Assets/storeBackground.png');
+        game.load.image('player', filepath + 'Assets/player.png');
+        game.load.image('ball', filepath + 'Assets/ball.png');
+        game.load.image('papiShot', filepath + 'Assets/papiball.png');
+        game.load.image('miia', filepath + 'Assets/miia4.png');
+        game.load.image('papi', filepath + 'Assets/papi.png');
+    	game.load.image('coin', filepath + 'Assets/mistycoin.png');
+    	game.load.image('drop', filepath + 'Assets/mistycoinDrop.png');
+    	game.load.image('button', filepath + 'Assets/button.png');
+        game.load.image('onClickButton', filepath + 'Assets/onClickButton.png');
+        game.load.image('graybutton', filepath + 'Assets/graybutton.png');
+        game.load.image('coinParticle', filepath + 'Assets/coinParticle.png');
+        game.load.image('deathParticle', filepath + 'Assets/bluespark.png');
+        game.load.image('hitParticle', filepath + 'Assets/hitParticle.png');
+        game.load.image('damageParticle', filepath + 'Assets/redspark.png');
 
-        game.load.spritesheet('fail', 'assets/omgfail.png', 276, 225);
-        game.load.spritesheet('yeahOk', 'assets/jlaw-okay.png', 245, 285);
-        game.load.spritesheet('jumprope', 'assets/jumprope.png', 300, 170);
-        game.load.spritesheet('headshot', 'assets/headshot.png', 300, 169);
-        game.load.spritesheet('headshake', 'assets/headshake.png', 200, 113);
-        game.load.spritesheet('deerheadbutt', 'assets/deerheadbutt.png', 300, 170);
-        game.load.spritesheet('buttonsprites', 'assets/buttonsprites.png', 75, 53);
-        game.load.spritesheet('startButtonSprites', 'assets/startButton.png', 202, 55);
-        game.load.spritesheet('restartButtonSprites', 'assets/restartButton.png', 243, 48);
+        game.load.image('moveParticle0', filepath + 'Assets/particles/whitePuff00.png');
+        game.load.image('moveParticle1', filepath + 'Assets/particles/whitePuff01.png');
+        game.load.image('moveParticle2', filepath + 'Assets/particles/whitePuff02.png');
+        game.load.image('moveParticle3', filepath + 'Assets/particles/whitePuff03.png');
+        game.load.image('moveParticle4', filepath + 'Assets/particles/whitePuff04.png');
 
-        game.load.image('musicOn', 'assets/musicOn.png');
-        game.load.image('musicOff', 'assets/musicOff.png');
-        game.load.image('sfxOn', 'assets/audioOn.png');
-        game.load.image('sfxOff', 'assets/audioOff.png');
+        game.load.spritesheet('fail', filepath + 'Assets/omgfail.png', 276, 225);
+        game.load.spritesheet('yeahOk', filepath + 'Assets/jlaw-okay.png', 245, 285);
+        game.load.spritesheet('jumprope', filepath + 'Assets/jumprope.png', 300, 170);
+        game.load.spritesheet('headshot', filepath + 'Assets/headshot.png', 300, 169);
+        game.load.spritesheet('headshake', filepath + 'Assets/headshake.png', 200, 113);
+        game.load.spritesheet('deerheadbutt', filepath + 'Assets/deerheadbutt.png', 300, 170);
+        game.load.spritesheet('buttonsprites', filepath + 'Assets/buttonsprites.png', 75, 53);
+        game.load.spritesheet('startButtonSprites', filepath + 'Assets/startButton.png', 202, 55);
+        game.load.spritesheet('restartButtonSprites', filepath + 'Assets/restartButton.png', 243, 48);
 
-        game.load.audio('meow0', 'assets/audio/meowing.wav');
-        game.load.audio('meow1', 'assets/audio/meowing1.wav');
-        game.load.audio('meow2', 'assets/audio/meowing2.wav');
-        game.load.audio('meow3', 'assets/audio/meowing3.wav');
-        game.load.audio('upgrade', 'assets/audio/armorUp.wav');
-        game.load.audio('error', 'assets/audio/errorSound.wav');
-        game.load.audio('shot1', 'assets/audio/shot.wav');
-        game.load.audio('hitSound', 'assets/audio/hitSound.wav');
-        game.load.audio('playerDamage', 'assets/audio/playerDamage.wav');
+        game.load.image('musicOn', filepath + 'Assets/musicOn.png');
+        game.load.image('musicOff', filepath + 'Assets/musicOff.png');
+        game.load.image('sfxOn', filepath + 'Assets/audioOn.png');
+        game.load.image('sfxOff', filepath + 'Assets/audioOff.png');
 
-        game.load.audio('music', 'assets/audio/menu.mp3');
-        game.load.audio('playMusic', 'assets/audio/playMusic.mp3');
+        game.load.audio('meow0', filepath + 'Assets/Audio/meowing.wav');
+        game.load.audio('meow1', filepath + 'Assets/Audio/meowing1.wav');
+        game.load.audio('meow2', filepath + 'Assets/Audio/meowing2.wav');
+        game.load.audio('meow3', filepath + 'Assets/Audio/meowing3.wav');
+        game.load.audio('upgrade', filepath + 'Assets/Audio/armorUp.wav');
+        game.load.audio('error', filepath + 'Assets/Audio/errorSound.wav');
+        game.load.audio('shot1', filepath + 'Assets/Audio/shot.wav');
+        game.load.audio('hitSound', filepath + 'Assets/Audio/hitSound.wav');
+        game.load.audio('playerDamage', filepath + 'Assets/Audio/playerDamage.wav');
+
+        game.load.audio('music', filepath + 'Assets/Audio/menu.mp3');
+        game.load.audio('playMusic', filepath + 'Assets/Audio/playMusic.mp3');
     },
 
     create: function() {

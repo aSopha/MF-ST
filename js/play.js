@@ -13,14 +13,19 @@ var playState = {
         game.add.sprite(0, 0, 'background');
 
         //Text showing what level it currently is
-        levelText = game.add.text(8, 0, 'Level: 0', { fontSize : '50px', fill: '#F0F0F0'});
-    	levelText.anchor.setTo(0,0);
+        levelText = game.add.text(game.world.width - 8, 0, 'Level: 0', { fontSize : '50px', fill: '#F0F0F0'});
+    	levelText.anchor.setTo(1,0);
         updateLevelText();
 
         //Text showing how much hp the player has left
-        hpText = game.add.text(game.world.width - 150, 0, 'HP: ', { fontSize : '50px', fill: '#F0F0F0'});
-    	levelText.anchor.setTo(0,0);
+        hpText = game.add.text(game.world.width - 8, 50, 'HP: ', { fontSize : '50px', fill: '#F0F0F0'});
+    	hpText.anchor.setTo(1,0);
         updateHPText();
+
+        //Text showing how much hp the player has left
+        scoreText = game.add.text(8, 0, 'Score: ', { fontSize : '50px', fill: '#F0F0F0'});
+    	scoreText.anchor.setTo(0,0);
+        updateScoreText();
 
         //Text showing how much curreny the player has
         currencyText = game.add.text(55, 10, ': 0', { fontSize : '20px', fill: '#F0F0F0'});
@@ -67,6 +72,7 @@ var playState = {
 
     update: function() {
 
+        decrementScore()
         player.updateEmitterPosition();
         //game.debug.spriteCorners(player.player, true, true);
 
@@ -145,12 +151,15 @@ var playState = {
 }
 
 function hitBaddie(shot, baddie) {
+    let scores = [50,200];
     shot.kill();
     if(baddie.hitsLeft == 0) {
         baddie.kill();
         level.killCount++;
         console.log('killed: ' + level.killCount +  '/' + level.getEnemyCount() + ' enemies');
+        score += scores[baddie.type];
         spawnCoin(baddie);
+        updateScoreText();
 
 
     } else {
@@ -233,6 +242,8 @@ function pickUp(guy, coin) {
 	coin.kill();
 	player.currency += 1;
 	currencyText.text = ': ' + player.currency;
+    score += 100;
+    updateScoreText();
     playMeow();
 
 }
@@ -256,6 +267,19 @@ function spawnCoin(location) {
 
 function updateLevelText() {
     levelText.text = 'Level: ' + level.currentLevel;
+}
+
+function updateScoreText() {
+    let zeroes = '';
+    let tempScore = score;
+    while(tempScore < 100000) {
+        tempScore *=10;
+        zeroes += '0';
+        if(zeroes.length >4) {
+            break;
+        }
+    }
+    scoreText.text = 'Score: ' + zeroes + score;
 }
 
 function gameOver() {
