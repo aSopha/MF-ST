@@ -78,7 +78,7 @@ var loadState = {
 //	This callback is sent the following parameters:
 function fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {
 
-	loadText.setText("File Complete: " + progress + "% - " + totalLoaded + " out of " + totalFiles);
+	loadText.setText("Loading: " + progress + "% - " + totalLoaded + " out of " + totalFiles);
 
 
 }

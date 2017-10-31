@@ -12,7 +12,6 @@ Ok so I've decided this will be a shoot-em-up game.
 
 ToDo:
 
-1. Score system
-2. Add more enemies
-3. Add different weapon types
-4. Add actual sprites instead of these placeholders
+1. Add more enemies
+2. Add different weapon types
+3. Add actual sprites instead of these placeholders
