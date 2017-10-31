@@ -12,11 +12,7 @@ var winState = {
 
     create: function () {
 
-
-
-
-
-        let name = prompt("Please enter your name", "");
+        let name = prompt("High Score! Enter your name", "");
         postScore(name);
 
         var enterkey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
@@ -28,15 +24,4 @@ var winState = {
         game.state.start('menu');
         resetEverything();
     }
-}
-
-function postScore(name) {
-    fetch('scores', {
-        method: 'put',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            'name': name,
-            'score': score
-        })
-    })
 }

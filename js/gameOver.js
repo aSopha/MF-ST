@@ -23,6 +23,9 @@ var overState = {
 
         enterkey.onDown.addOnce(this.restart, this);
 
+        let name = prompt("High Score! Enter your name", "");
+        postScore(name);
+
     },
 
     restart: function() {

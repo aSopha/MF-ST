@@ -170,3 +170,14 @@ function resetEverything() {
 	weapon.reset();
 	player.reset();
 }
+
+function postScore(name) {
+    fetch('scores', {
+        method: 'put',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            'name': name,
+            'score': score
+        })
+    })
+}

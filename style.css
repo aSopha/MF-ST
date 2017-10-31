@@ -1,6 +1,35 @@
+* {
+    margin: 0 0 0 0;
+
+}
 body {
     margin: 0;
 }
 canvas {
-    cursor: url('assets/crosshair.png') 10 10, default;
+    cursor: url('./Assets/crosshair.png') 10 10, default;
+}
+#scores {
+    display:inline-block;
+}
+.score {
+    font-size: 20px;
+}
+
+#game-and-scores {
+    width: 100%;
+    display:inline-block;
+
+}
+#my-game {
+    width: 1200px;
+    height: 600px;
+
+}
+.gamestuff{
+    display:inline-block;
+    vertical-align:top;
+}
+#title {
+    text-align: center;
+    font-size: 30px;
 }
