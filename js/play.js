@@ -2,6 +2,7 @@ var playState = {
 
     create: function() {
 
+        nextDecrement = game.time.now;
         if(postMenu) {
             playGameMusic();
             postMenu = false;
@@ -93,16 +94,22 @@ var playState = {
 
         game.physics.arcade.collide(baddies.miias);
         game.physics.arcade.collide(baddies.papis);
+        game.physics.arcade.collide(baddies.fastMiias);
 
 
         game.physics.arcade.overlap(player.player, baddies.miias, collisionPlayer, null, this);
+        game.physics.arcade.overlap(player.player, baddies.fastMiias, collisionPlayer, null, this);
         game.physics.arcade.overlap(player.player, baddies.papiShots, shotPlayer, null, this);
         game.physics.arcade.overlap(weapon.shots, baddies.miias, hitBaddie, null, this);
         game.physics.arcade.overlap(weapon.shots, baddies.papis, hitBaddie, null, this);
+        game.physics.arcade.overlap(weapon.shots, baddies.fastMiias, hitBaddie, null, this);
         game.physics.arcade.overlap(player.player, coins, pickUp, null, this);
 
         baddies.miias.forEach(function (baddie) {
             game.physics.arcade.moveToObject(baddie, player.player, 125)
+        });
+        baddies.fastMiias.forEach(function (baddie) {
+            game.physics.arcade.moveToObject(baddie, player.player, 275)
         });
         //this.shop();
         player.stop();

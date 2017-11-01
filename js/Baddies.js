@@ -4,21 +4,25 @@ class Baddies {
         this.miias;
         this.miiaSpawnRate = 300;
         this.nextMiiaSpawn = 0;
+        this.miiaHitsToKill = 1;
 
         this.papis;
         this.papiNextFire = 0;
         this.papiFireRate;
         this.papiFireSpeed = 200;
         this.papiShots;
-        this.papiSpawnRate = 500;
+        this.papiSpawnRate = 3000;
         this.nextPapiSpawn = 0;
+        this.papiHitsToKill = 2;
 
         this.fastMiias;
-        this.fastMiiaSpawnRate = 1000;
-        this.nextFastMiiaSpawn = 0;
+        this.fastMiiaSpawnRate = 2000;
+        this.nextFastMiiaSpawn = 1000;
+        this.fastMiiasHitsToKill = 1;
 
         this.spawnRates = [this.miiaSpawnRate , this.papiSpawnRate, this.fastMiiaSpawnRate];
         this.nextSpawns = [this.nextMiiaSpawn , this.nextPapiSpawn, this.nextFastMiiaSpawn];
+        this.hitsToKill = [this.miiaHitsToKill, this.papiHitsToKill, this.fastMiiasHitsToKill];
     }
 
     setupMiias() {
@@ -54,17 +58,19 @@ class Baddies {
     setupFastMiias() {
         this.fastMiias = game.add.group();
         this.fastMiias.enableBody = true;
-        for (var i = 0; i < 25; i++) {
-            var miia = this.fastMiias.create(game.world.randomX, game.world.randomY, 'miia');
-    		miia.anchor.setTo(0.5,0.5);
-            miia.type = 0;
-    		miia.kill();
+        for (var i = 0; i < 10; i++) {
+            var fastMiia = this.fastMiias.create(game.world.randomX, game.world.randomY, 'fastMiia');
+    		fastMiia.anchor.setTo(0.5,0.5);
+            fastMiia.type = 0;
+    		fastMiia.kill();
         }
+        this.nextSpawns[2] = game.time.now + 2000;
     }
 
     setupAll() {
         this.setupMiias();
         this.setupPapis();
+        this.setupFastMiias();
     }
 
     //Randomly select a papi to fire
@@ -92,12 +98,12 @@ class Baddies {
 
     spawnBaddie(currentLevel) {
 
-        let types = [this.miias,this.papis];
+        let types = [this.miias,this.papis,this.fastMiias];
 
     	if(level.enemiesRemaining <=0 || level.over == true) {
     		return;
     	}
-        let liveBaddieCount = [0,0];
+        let liveBaddieCount = [0,0,0];
 
         this.miias.forEachAlive(function(miia) {
             liveBaddieCount[0]++;
@@ -107,22 +113,26 @@ class Baddies {
             liveBaddieCount[1]++;
         });
 
+        this.fastMiias.forEachAlive(function(papi) {
+            liveBaddieCount[2]++;
+        });
+
         //console.log('live miias: ' + liveBaddieCount[0]);
         //console.log('live papis: ' + liveBaddieCount[1]);
-        for(let i = 0; i < 2; i++) {
+        for(let i = 0; i < 3; i++) {
             //console.log('looping');
             if(liveBaddieCount[i] < level.maxActive[currentLevel][i]
                 && level.enemyTypeRemaining[currentLevel][i] > 0) {
 
                 if(game.time.now > this.nextSpawns[i]) {
-                    this.nextSpawns[i] = game.time.now + this.spawnRates[i];
+                    this.nextSpawns[i] = game.time.now + this.spawnRates[i]/level.spawnrateMultiplier[currentLevel][i];
                     let baddie = types[i].getFirstDead();
                 	if(baddie === null) {
                         console.log('no dead baddies');
                 		return;
                 	}
                     baddie.revive();
-                    baddie.hitsLeft = i;
+                    baddie.hitsLeft = this.hitsToKill[i] - 1;
                 	let location = this.chooseLocation();
 
                     baddie.body.velocity.x = game.rnd.integerInRange(-100, 100);

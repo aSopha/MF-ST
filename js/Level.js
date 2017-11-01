@@ -7,31 +7,51 @@ class Level {
         }
         this.killCount = 0;
         this.enemyCount = [
-            [10, 2],
-            [15, 3],
-            [20, 5],
-            [25, 6],
-            [40, 8],
-            [60,10]
+            [10, 2, 0],
+            [15, 3, 0],
+            [15, 4, 5],
+            [30, 4, 0],
+            [40, 4, 3],
+            [40, 6, 5],
+            [40, 8, 10],
+            [40,10, 20],
+            [40,10, 20],
+            [40,10, 20]
         ];
         this.maxActive = [
-            [5, 1],
-            [10, 2],
-            [15, 2],
-            [15, 3],
-            [20, 3],
-            [20, 4]
+            [5, 2, 10],
+            [10, 2, 10],
+            [15, 2, 10],
+            [15, 3, 10],
+            [20, 3, 10],
+            [20, 4, 10],
+            [25, 5, 10],
+            [30, 5, 10],
+            [35, 6, 15],
+            [40, 6, 20]
+        ];
+        this.spawnrateMultiplier = [
+            [1, 1, 1],
+            [1, 1, 1],
+            [1, 1, 1],
+            [1.5, 1, 1],
+            [1.5, 1, 1],
+            [1.5, 1.25, 1],
+            [1.5, 1.5, 2],
+            [1.5, 2, 2],
+            [1.5, 2.5, 2.5],
+            [1.5, 3, 3],
         ];
         this.enemyTypeRemaining = this.fillEnemyTypeCount();
         this.enemiesRemaining = this.getEnemyCount();
-        this.levelCount = 6;
+        this.levelCount = 10;
         this.over = false;
         //console.log('current level: ' + this.currentLevel + 'enemies remaining' + this.enemiesRemaining);
     }
 
     getEnemyCount() {
         let result = 0;
-        for(let i = 0; i < 2; i++) {
+        for(let i = 0; i < 3; i++) {
             result += this.enemyCount[this.currentLevel][i];
         }
         return result;

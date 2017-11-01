@@ -16,6 +16,7 @@ var loadState = {
         game.load.image('ball', filepath + 'Assets/ball.png');
         game.load.image('papiShot', filepath + 'Assets/papiball.png');
         game.load.image('miia', filepath + 'Assets/miia4.png');
+        game.load.image('fastMiia', filepath + 'Assets/fastMiia.png');
         game.load.image('papi', filepath + 'Assets/papi.png');
     	game.load.image('coin', filepath + 'Assets/mistycoin.png');
     	game.load.image('drop', filepath + 'Assets/mistycoinDrop.png');
