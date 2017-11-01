@@ -13,7 +13,12 @@ var winState = {
     create: function () {
 
         let name = prompt("High Score! Enter your name", "");
-        postScore(name);
+        if(name == null) {
+            let name = prompt("High Score! Enter your name", "");
+        }
+        if(name != null) {
+            postScore(name);
+        }
 
         var enterkey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 

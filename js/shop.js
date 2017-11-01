@@ -1,9 +1,9 @@
 var shopState = {
     create: function() {
         //Weapon upgrade Prices
-        weaponTypePrices = [5,10,'x'];
+        weaponTypePrices = [10,20,'x'];
         //Store Prices
-        standardPrices = [1,1,1,2,2,3,4,5,7,10,15, 'x'];
+        standardPrices = [1,2,3,4,5,6,7,8,9,10,15, 'x'];
         //  A simple background for our game
         game.add.sprite(0, 0, 'background');
         // adding a background for the store
