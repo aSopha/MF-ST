@@ -61,7 +61,7 @@ class Baddies {
         for (var i = 0; i < 10; i++) {
             var fastMiia = this.fastMiias.create(game.world.randomX, game.world.randomY, 'fastMiia');
     		fastMiia.anchor.setTo(0.5,0.5);
-            fastMiia.type = 0;
+            fastMiia.type = 2;
     		fastMiia.kill();
         }
         this.nextSpawns[2] = game.time.now + 2000;

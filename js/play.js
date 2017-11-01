@@ -158,7 +158,7 @@ var playState = {
 }
 
 function hitBaddie(shot, baddie) {
-    let scores = [50,200];
+    let scores = [50,200,100];
     shot.kill();
     if(baddie.hitsLeft == 0) {
         baddie.kill();
