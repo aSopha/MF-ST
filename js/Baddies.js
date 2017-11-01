@@ -4,6 +4,7 @@ class Baddies {
         this.miias;
         this.miiaSpawnRate = 300;
         this.nextMiiaSpawn = 0;
+
         this.papis;
         this.papiNextFire = 0;
         this.papiFireRate;
@@ -12,8 +13,12 @@ class Baddies {
         this.papiSpawnRate = 500;
         this.nextPapiSpawn = 0;
 
-        this.spawnRates = [this.miiaSpawnRate , this.papiSpawnRate];
-        this.nextSpawns = [this.nextMiiaSpawn , this.nextPapiSpawn];
+        this.fastMiias;
+        this.fastMiiaSpawnRate = 1000;
+        this.nextFastMiiaSpawn = 0;
+
+        this.spawnRates = [this.miiaSpawnRate , this.papiSpawnRate, this.fastMiiaSpawnRate];
+        this.nextSpawns = [this.nextMiiaSpawn , this.nextPapiSpawn, this.nextFastMiiaSpawn];
     }
 
     setupMiias() {
@@ -44,6 +49,17 @@ class Baddies {
         this.papiShots.setAll('outOfBoundsKill', true);
     	this.papiShots.tracking = false;
         this.papiFireRate = 800;
+    }
+
+    setupFastMiias() {
+        this.fastMiias = game.add.group();
+        this.fastMiias.enableBody = true;
+        for (var i = 0; i < 25; i++) {
+            var miia = this.fastMiias.create(game.world.randomX, game.world.randomY, 'miia');
+    		miia.anchor.setTo(0.5,0.5);
+            miia.type = 0;
+    		miia.kill();
+        }
     }
 
     setupAll() {

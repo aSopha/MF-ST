@@ -10,7 +10,7 @@ var loadState = {
         //let filepath = './PhaserGame';
         let filepath = '';
 
-        game.load.image('background', filepath + 'Assets/ghostBackground.png');
+        game.load.image('background', filepath + 'Assets/spacefield_a-000.png');
         game.load.image('storeBackground', filepath + 'Assets/storeBackground.png');
         game.load.image('player', filepath + 'Assets/player.png');
         game.load.image('ball', filepath + 'Assets/ball.png');
